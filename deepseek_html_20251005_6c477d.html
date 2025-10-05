@@ -1,0 +1,4427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林山市人民政府</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 红色主题样式 */
+        :root {
+            --primary-color: #c00;
+            --primary-dark: #900;
+            --primary-light: #f2dede;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-left-image {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .logo-en {
+            font-size: 16px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            width: 100%;
+        }
+        
+        .user-area {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-area a {
+            color: white;
+            font-size: 14px;
+        }
+        
+        .nav {
+            display: flex;
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        .nav-item {
+            padding: 10px 20px;
+            color: white;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-item.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .sub-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 100;
+        }
+        
+        .nav-item:hover .sub-nav {
+            display: block;
+        }
+        
+        .sub-nav a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sub-nav a:hover {
+            background-color: #f5f5f5;
+            color: var(--primary-color);
+        }
+        
+        /* 主要内容区 */
+        .main-content {
+            display: flex;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        
+        .left-sidebar {
+            flex: 0 0 250px;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        .right-sidebar {
+            flex: 0 0 300px;
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        /* 新闻列表样式 */
+        .news-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .news-title {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+            color: #0066cc;
+        }
+        
+        .news-title:hover {
+            text-decoration: underline;
+        }
+        
+        .news-date {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .news-author {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        /* 新闻图片样式 */
+        .news-image-left {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .news-image-top {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        
+        /* 热门服务样式 */
+        .hot-services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .service-item {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .service-item:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        /* 预警提示样式 */
+        .alert {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+        
+        /* 登录表单样式 */
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* 隐藏元素 */
+        .hidden {
+            display: none;
+        }
+        
+        /* 管理界面样式 */
+        .admin-panel {
+            margin: 20px 0;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .news-editor, .file-editor, .feature-control, .nationality-editor, .header-config, .application-management, .alert-config, .county-editor, .admin-management {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .suggestion-item, .file-item, .application-item, .county-item, .admin-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .suggestion-meta, .file-meta, .application-meta, .county-meta, .admin-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .application-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-approved {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .application-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .reason-input {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        /* 功能控制样式 */
+        .feature-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .feature-toggle label {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* 文件下载样式 */
+        .file-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .file-icon {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        /* 新闻详情样式 */
+        .news-detail {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .news-detail-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .news-detail-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .news-detail-meta {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .news-detail-content {
+            line-height: 1.8;
+        }
+        
+        .news-detail-image {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .back-to-news {
+            margin-top: 20px;
+        }
+        
+        /* 表单样式 */
+        .form-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* 县级单位展示样式 */
+        .county-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .county-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .county-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .county-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .county-info {
+            padding: 15px;
+        }
+        
+        .county-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .county-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* 县级单位详情页面样式 */
+        .county-detail {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .county-detail-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .county-detail-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .county-detail-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .county-detail-content {
+            line-height: 1.8;
+        }
+        
+        /* 移动端汉堡菜单样式 */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .mobile-nav-item {
+            padding: 15px;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .mobile-nav-item.active {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .mobile-sub-nav {
+            display: none;
+            background-color: rgba(0,0,0,0.1);
+        }
+        
+        .mobile-sub-nav a {
+            display: block;
+            padding: 12px 30px;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .mobile-sub-nav a:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        .mobile-sub-nav-toggle {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 18px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .left-sidebar, .right-sidebar {
+                flex: 1;
+            }
+            
+            .news-image-left {
+                width: 80px;
+                height: 60px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-logo {
+                margin-bottom: 10px;
+            }
+            
+            .county-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            /* 移动端导航 */
+            .nav {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .user-area {
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .county-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hot-services {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+            }
+            
+            .admin-actions .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .application-actions {
+                flex-direction: column;
+            }
+            
+            .application-actions .btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .logo-en {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .card-body {
+                padding: 10px;
+            }
+            
+            .news-detail, .county-detail {
+                padding: 15px;
+            }
+            
+            .news-detail-title, .county-detail-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 网站头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">
+                    <img id="header-left-image" src="" alt="林山市标志" class="header-left-image hidden">
+                    <div class="logo-area">
+                        <div class="logo">林山市人民政府</div>
+                        <div class="logo-en">The People's Government of Linshan Municipality</div>
+                    </div>
+                </div>
+                <div class="header-top">
+                    <div></div> <!-- 空div用于占位 -->
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
+                    <div class="user-area">
+                        <a href="#" id="admin-login-link">管理员登录</a>
+                        <a href="#" id="admin-register-link">管理员注册</a>
+                        <a href="#" id="admin-panel-link" class="hidden">管理面板</a>
+                        <a href="#" id="logout-link" class="hidden">退出登录</a>
+                        <a href="#">无障碍浏览</a>
+                        <a href="#">网站地图</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav">
+                <div class="nav-item active" data-feature="home" id="home-nav">首页</div>
+                <!-- 删除了政务公开板块 -->
+                <div class="nav-item" data-feature="personal-service">
+                    个人办事
+                    <div class="sub-nav">
+                        <a href="#">社会保障</a>
+                        <a href="#">就业创业</a>
+                        <!-- 修改为申请入籍和申请退籍 -->
+                        <a href="#" id="apply-naturalization-link">申请入籍</a>
+                        <a href="#" id="apply-exit-link">申请退籍</a>
+                        <a href="#" id="entry-exit-link">出入境</a>
+                        <a href="#">司法公证</a>
+                    </div>
+                </div>
+                <div class="nav-item" data-feature="enterprise-service">
+                    企业办事
+                    <div class="sub-nav">
+                        <a href="#">设立登记</a>
+                        <a href="#">金融认证</a>
+                        <a href="#">安全生产</a>
+                        <a href="#">交通运输</a>
+                        <a href="#">融资担保</a>
+                    </div>
+                </div>
+                <div class="nav-item" data-feature="policy">政策兑现</div>
+                <div class="nav-item" data-feature="interaction">政民互动</div>
+                <div class="nav-item" data-feature="culture">
+                    人文林山
+                    <div class="sub-nav" id="culture-sub-nav">
+                        <!-- 县级行政单位子菜单将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                <div class="nav-item hidden" id="admin-nav">
+                    管理员
+                    <div class="sub-nav">
+                        <a href="#" id="suggestion-management-link">网上信访管理</a>
+                        <a href="#" id="news-management-link">新闻管理</a>
+                        <a href="#" id="file-management-link">文件管理</a>
+                        <a href="#" id="feature-management-link">功能管理</a>
+                        <a href="#" id="nationality-management-link">国籍/户籍管理</a>
+                        <a href="#" id="application-management-link">申请管理</a>
+                        <a href="#" id="header-config-link">标题栏配置</a>
+                        <a href="#" id="alert-management-link">预警信息</a>
+                        <a href="#" id="county-management-link">县级单位管理</a>
+                        <a href="#" id="admin-management-link" class="hidden">管理员账号管理</a>
+                        <a href="#" id="admin-review-link" class="hidden">审核管理员账号</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- 移动端导航 -->
+            <div class="mobile-nav hidden" id="mobile-nav">
+                <div class="mobile-nav-item active" data-feature="home" id="mobile-home-nav">首页</div>
+                <div class="mobile-nav-item" data-feature="personal-service">
+                    个人办事
+                    <span class="mobile-sub-nav-toggle">▶</span>
+                    <div class="mobile-sub-nav">
+                        <a href="#">社会保障</a>
+                        <a href="#">就业创业</a>
+                        <a href="#" id="mobile-apply-naturalization-link">申请入籍</a>
+                        <a href="#" id="mobile-apply-exit-link">申请退籍</a>
+                        <a href="#" id="mobile-entry-exit-link">出入境</a>
+                        <a href="#">司法公证</a>
+                    </div>
+                </div>
+                <div class="mobile-nav-item" data-feature="enterprise-service">
+                    企业办事
+                    <span class="mobile-sub-nav-toggle">▶</span>
+                    <div class="mobile-sub-nav">
+                        <a href="#">设立登记</a>
+                        <a href="#">金融认证</a>
+                        <a href="#">安全生产</a>
+                        <a href="#">交通运输</a>
+                        <a href="#">融资担保</a>
+                    </div>
+                </div>
+                <div class="mobile-nav-item" data-feature="policy">政策兑现</div>
+                <div class="mobile-nav-item" data-feature="interaction">政民互动</div>
+                <div class="mobile-nav-item" data-feature="culture">
+                    人文林山
+                    <span class="mobile-sub-nav-toggle">▶</span>
+                    <div class="mobile-sub-nav" id="mobile-culture-sub-nav">
+                        <!-- 县级行政单位子菜单将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                <div class="mobile-nav-item hidden" id="mobile-admin-nav">
+                    管理员
+                    <span class="mobile-sub-nav-toggle">▶</span>
+                    <div class="mobile-sub-nav">
+                        <a href="#" id="mobile-suggestion-management-link">网上信访管理</a>
+                        <a href="#" id="mobile-news-management-link">新闻管理</a>
+                        <a href="#" id="mobile-file-management-link">文件管理</a>
+                        <a href="#" id="mobile-feature-management-link">功能管理</a>
+                        <a href="#" id="mobile-nationality-management-link">国籍/户籍管理</a>
+                        <a href="#" id="mobile-application-management-link">申请管理</a>
+                        <a href="#" id="mobile-header-config-link">标题栏配置</a>
+                        <a href="#" id="mobile-alert-management-link">预警信息</a>
+                        <a href="#" id="mobile-county-management-link">县级单位管理</a>
+                        <a href="#" id="mobile-admin-management-link" class="hidden">管理员账号管理</a>
+                        <a href="#" id="mobile-admin-review-link" class="hidden">审核管理员账号</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <div class="container">
+        <!-- 管理员登录表单 (默认隐藏) -->
+        <div id="admin-login" class="login-form hidden">
+            <h2>管理员登录</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">登录</button>
+                <button type="button" id="cancel-login" class="btn btn-secondary">取消</button>
+                <div style="margin-top: 15px; text-align: center;">
+                    <a href="#" id="show-register-form">没有账号？立即注册</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- 管理员注册表单 (默认隐藏) -->
+        <div id="admin-register" class="login-form hidden">
+            <h2>管理员注册</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">用户名</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">密码</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">邮箱</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <button type="submit" class="btn">注册</button>
+                <button type="button" id="cancel-register" class="btn btn-secondary">取消</button>
+                <div style="margin-top: 15px; text-align: center;">
+                    <a href="#" id="show-login-form">已有账号？立即登录</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- 管理面板 (默认隐藏) -->
+        <div id="admin-panel" class="hidden">
+            <div class="admin-actions">
+                <button class="btn" id="manage-news-btn">管理新闻</button>
+                <button class="btn" id="manage-suggestions-btn">网上信访管理</button>
+                <button class="btn" id="manage-files-btn">文件管理</button>
+                <button class="btn" id="manage-features-btn">功能管理</button>
+                <button class="btn" id="manage-nationalities-btn">国籍/户籍管理</button>
+                <button class="btn" id="manage-applications-btn">申请管理</button>
+                <button class="btn" id="manage-header-config-btn">标题栏配置</button>
+                <button class="btn" id="manage-alert-btn">预警信息</button>
+                <button class="btn" id="manage-counties-btn">县级单位管理</button>
+                <button class="btn" id="manage-admin-btn" class="hidden">管理员账号管理</button>
+                <button class="btn" id="manage-admin-review-btn" class="hidden">审核管理员账号</button>
+                <button class="btn btn-secondary" id="back-to-home">返回首页</button>
+            </div>
+            
+            <!-- 新闻管理界面 -->
+            <div id="news-management" class="hidden">
+                <h2>新闻管理</h2>
+                <div class="news-editor">
+                    <h3>添加新闻</h3>
+                    <form id="add-news-form">
+                        <div class="form-group">
+                            <label for="news-title">标题</label>
+                            <input type="text" id="news-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="news-content">内容</label>
+                            <textarea id="news-content" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="news-author">发布者</label>
+                            <input type="text" id="news-author" value="林山市人民政府办公室" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="news-image">图片 (可选)</label>
+                            <input type="file" id="news-image" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="news-category">分类</label>
+                            <select id="news-category">
+                                <option value="news">新闻动态</option>
+                                <option value="important">要闻动态</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">添加新闻</button>
+                    </form>
+                </div>
+                
+                <div class="news-list-editor">
+                    <h3>现有新闻</h3>
+                    <div id="news-list-admin">
+                        <!-- 新闻列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 网上信访管理界面 -->
+            <div id="suggestion-management" class="hidden">
+                <h2>网上信访管理</h2>
+                <div id="suggestions-list">
+                    <!-- 网上信访列表将由JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 文件管理界面 -->
+            <div id="file-management" class="hidden">
+                <h2>政府文件管理</h2>
+                <div class="file-editor">
+                    <h3>添加文件</h3>
+                    <form id="add-file-form">
+                        <div class="form-group">
+                            <label for="file-title">文件标题</label>
+                            <input type="text" id="file-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="file-description">文件描述</label>
+                            <textarea id="file-description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file-category">文件分类</label>
+                            <select id="file-category">
+                                <option value="policy">政策法规</option>
+                                <option value="notice">通知公告</option>
+                                <option value="report">工作报告</option>
+                                <option value="other">其他文件</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file-upload">上传文件</label>
+                            <input type="file" id="file-upload" required>
+                        </div>
+                        <button type="submit" class="btn">添加文件</button>
+                    </form>
+                </div>
+                
+                <div class="file-list-editor">
+                    <h3>现有文件</h3>
+                    <div id="file-list-admin">
+                        <!-- 文件列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 功能管理界面 -->
+            <div id="feature-management" class="hidden">
+                <h2>网站功能管理</h2>
+                <div class="feature-control">
+                    <h3>功能开关</h3>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-home" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-home">首页显示</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-personal-service" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-personal-service">个人办事</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-enterprise-service" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-enterprise-service">企业办事</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-policy" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-policy">政策兑现</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-interaction" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-interaction">政民互动</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-culture" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-culture">人文林山</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-news" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-news">新闻动态</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-important-news" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-important-news">要闻动态</label>
+                    </div>
+                    <div class="feature-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="feature-suggestion" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <label for="feature-suggestion">网上信访</label>
+                    </div>
+                    <button class="btn" id="save-features">保存设置</button>
+                </div>
+            </div>
+            
+            <!-- 国籍/户籍管理界面 -->
+            <div id="nationality-management" class="hidden">
+                <h2>国籍/户籍管理</h2>
+                <div class="nationality-editor">
+                    <h3>添加国籍/户籍选项</h3>
+                    <form id="add-nationality-form">
+                        <div class="form-group">
+                            <label for="nationality-name">国籍/户籍名称</label>
+                            <input type="text" id="nationality-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nationality-type">类型</label>
+                            <select id="nationality-type">
+                                <option value="nationality">国籍</option>
+                                <option value="household">户籍</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">添加选项</button>
+                    </form>
+                </div>
+                
+                <div class="nationality-list-editor">
+                    <h3>现有国籍/户籍选项</h3>
+                    <div id="nationality-list-admin">
+                        <!-- 国籍/户籍列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 申请管理界面 -->
+            <div id="application-management" class="hidden">
+                <h2>申请管理</h2>
+                
+                <div class="application-management">
+                    <h3>入籍申请 - 中国居民</h3>
+                    <div id="chinese-naturalization-applications-list">
+                        <!-- 中国居民入籍申请列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="application-management">
+                    <h3>入籍申请 - 非中国居民</h3>
+                    <div id="foreigner-naturalization-applications-list">
+                        <!-- 非中国居民入籍申请列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="application-management">
+                    <h3>退籍申请</h3>
+                    <div id="exit-applications-list">
+                        <!-- 退籍申请列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                
+                <div class="application-management">
+                    <h3>出入境申请</h3>
+                    <div id="passport-applications-list">
+                        <!-- 出入境申请列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 标题栏配置界面 -->
+            <div id="header-config" class="hidden">
+                <h2>标题栏配置</h2>
+                <div class="header-config">
+                    <h3>标题栏左侧图片设置</h3>
+                    <form id="header-image-form">
+                        <div class="form-group">
+                            <label for="header-image-upload">上传标题栏左侧图片</label>
+                            <input type="file" id="header-image-upload" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn">保存图片</button>
+                        <button type="button" id="remove-header-image" class="btn btn-secondary">移除图片</button>
+                    </form>
+                    <div class="preview-area" style="margin-top: 20px;">
+                        <h4>预览</h4>
+                        <div style="background-color: #c00; padding: 10px; display: flex; align-items: center;">
+                            <img id="header-image-preview" src="" alt="预览" class="header-left-image hidden" style="margin-right: 15px;">
+                            <div>
+                                <div style="font-size: 28px; font-weight: bold; color: white;">林山市人民政府</div>
+                                <div style="font-size: 16px; color: rgba(255,255,255,0.8);">The People's Government of Linshan Municipality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-config" style="margin-top: 30px;">
+                    <h3>页脚信息设置</h3>
+                    <form id="footer-config-form">
+                        <div class="form-group">
+                            <label for="footer-address">地址</label>
+                            <input type="text" id="footer-address" value="林山市中山路1号" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="footer-postcode">邮编</label>
+                            <input type="text" id="footer-postcode" value="221000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="footer-identifier">网站标识码</label>
+                            <input type="text" id="footer-identifier" value="00000001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="footer-icp">备案号</label>
+                            <input type="text" id="footer-icp" value="顺ICP备00000001号" required>
+                        </div>
+                        <button type="submit" class="btn">保存页脚信息</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- 预警信息管理界面 -->
+            <div id="alert-management" class="hidden">
+                <h2>预警信息管理</h2>
+                <div class="alert-config">
+                    <h3>预警提示设置</h3>
+                    <form id="alert-config-form">
+                        <div class="form-group">
+                            <label for="alert-content">预警提示内容</label>
+                            <textarea id="alert-content" rows="4" placeholder="请输入预警提示内容...">林山市发布强降雨天气预警，请市民合理安排出行计划，注意防范地质灾害。</textarea>
+                        </div>
+                        <div class="feature-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="feature-alert" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <label for="feature-alert">显示预警提示</label>
+                        </div>
+                        <button type="submit" class="btn">保存设置</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- 县级单位管理界面 -->
+            <div id="county-management" class="hidden">
+                <h2>县级单位管理</h2>
+                <div class="county-editor">
+                    <h3>添加县级单位</h3>
+                    <form id="add-county-form">
+                        <div class="form-group">
+                            <label for="county-name">县级单位名称</label>
+                            <input type="text" id="county-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="county-description">单位描述</label>
+                            <textarea id="county-description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="county-image">单位图片</label>
+                            <input type="file" id="county-image" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn">添加县级单位</button>
+                    </form>
+                </div>
+                
+                <div class="county-list-editor">
+                    <h3>现有县级单位</h3>
+                    <div id="county-list-admin">
+                        <!-- 县级单位列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 管理员账号管理界面 -->
+            <div id="admin-management" class="hidden">
+                <h2>管理员账号管理</h2>
+                <div class="admin-management">
+                    <h3>添加管理员账号</h3>
+                    <form id="add-admin-form">
+                        <div class="form-group">
+                            <label for="admin-username">用户名</label>
+                            <input type="text" id="admin-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">密码</label>
+                            <input type="password" id="admin-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-email">邮箱</label>
+                            <input type="email" id="admin-email" required>
+                        </div>
+                        <button type="submit" class="btn">添加管理员</button>
+                    </form>
+                </div>
+                
+                <div class="admin-list-editor">
+                    <h3>现有管理员账号</h3>
+                    <div id="admin-list-admin">
+                        <!-- 管理员列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 审核管理员账号界面 -->
+            <div id="admin-review" class="hidden">
+                <h2>审核管理员账号</h2>
+                <div class="admin-review">
+                    <h3>待审核的管理员账号</h3>
+                    <div id="pending-admin-list">
+                        <!-- 待审核管理员列表将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 网站首页内容 (默认显示) -->
+        <div id="home-page">
+            <div class="main-content">
+                <!-- 左侧边栏 -->
+                <div class="left-sidebar">
+                    <div class="card">
+                        <div class="card-header">快速服务</div>
+                        <div class="card-body">
+                            <div class="hot-services">
+                                <div class="service-item">社会保障</div>
+                                <div class="service-item" id="quick-gov-files">政府文件</div>
+                                <div class="service-item">就业创业</div>
+                                <div class="service-item">金融认证</div>
+                                <div class="service-item" id="quick-entry-exit">出入境</div>
+                                <div class="service-item">公积金</div>
+                                <div class="service-item">民生保障</div>
+                                <!-- 修改为申请入籍和申请退籍 -->
+                                <div class="service-item" id="quick-naturalization">申请入籍</div>
+                                <div class="service-item" id="quick-exit">申请退籍</div>
+                                <!-- 添加人文林山到快速服务 -->
+                                <div class="service-item" id="quick-culture">人文林山</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">相关链接</div>
+                        <div class="card-body">
+                            <ul class="news-list">
+                                <li><a href="#">国家政务服务网</a></li>
+                                <li><a href="#">省政府门户网站</a></li>
+                                <li><a href="#">市政府信息公开</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中间内容 -->
+                <div class="content">
+                    <!-- 预警提示 -->
+                    <div class="card" data-feature="alert">
+                        <div class="card-header">预警提示</div>
+                        <div class="card-body">
+                            <div class="alert" id="alert-content-display">
+                                <!-- 预警内容将由JavaScript动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻动态 -->
+                    <div class="card" data-feature="news">
+                        <div class="card-header">
+                            新闻动态
+                            <span id="edit-news-btn" class="btn" style="font-size: 12px; padding: 3px 8px;">编辑</span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="news-list" id="news-list">
+                                <!-- 新闻列表将由JavaScript动态生成 -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 要闻动态 -->
+                    <div class="card" data-feature="important-news">
+                        <div class="card-header">要闻动态</div>
+                        <div class="card-body">
+                            <div id="important-news">
+                                <!-- 要闻内容将由JavaScript动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧边栏 -->
+                <div class="right-sidebar">
+                    <div class="card" data-feature="suggestion">
+                        <div class="card-header">网上信访</div>
+                        <div class="card-body">
+                            <form id="suggestion-form">
+                                <div class="form-group">
+                                    <label for="name">姓名</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact">联系方式</label>
+                                    <input type="text" id="contact" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="suggestion-content">信访内容</label>
+                                    <textarea id="suggestion-content" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn">提交</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新闻详情页面 (默认隐藏) -->
+        <div id="news-detail-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title" id="detail-title"></h1>
+                    <div class="news-detail-meta">
+                        <span id="detail-date"></span>
+                        <span id="detail-author" class="news-author"></span>
+                    </div>
+                </div>
+                <div class="news-detail-content" id="detail-content">
+                    <!-- 新闻内容将由JavaScript动态生成 -->
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-news-list">返回新闻列表</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 政府文件页面 (默认隐藏) -->
+        <div id="gov-files-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title">政府文件</h1>
+                    <div class="news-detail-meta">
+                        林山市人民政府发布的各类政策文件、通知公告等
+                    </div>
+                </div>
+                <div class="news-detail-content">
+                    <ul class="file-list" id="gov-files-list">
+                        <!-- 政府文件列表将由JavaScript动态生成 -->
+                    </ul>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-home-from-files">返回首页</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 申请入籍页面 (默认隐藏) -->
+        <div id="naturalization-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title">申请入籍</h1>
+                    <div class="news-detail-meta">
+                        提供中国居民和非中国居民的入籍申请服务
+                    </div>
+                </div>
+                <div class="news-detail-content">
+                    <!-- 申请类型选择 -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">选择申请类型</h3>
+                        <div style="margin-bottom: 20px;">
+                            <label>
+                                <input type="radio" name="applicant-type" value="chinese" checked> 中国居民申请入籍
+                            </label>
+                            <label style="margin-left: 20px;">
+                                <input type="radio" name="applicant-type" value="foreigner"> 非中国居民申请入籍
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 中国居民入籍申请表单 -->
+                    <div class="form-section" id="chinese-naturalization-form">
+                        <h3 class="form-section-title">中国居民入籍申请</h3>
+                        <form id="chinese-naturalization-form-data">
+                            <div class="form-group">
+                                <label for="chinese-applicant-name">申请人姓名</label>
+                                <input type="text" id="chinese-applicant-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="chinese-applicant-id">身份证号码 (可选)</label>
+                                <input type="text" id="chinese-applicant-id">
+                            </div>
+                            <div class="form-group">
+                                <label for="chinese-applicant-email">邮箱地址</label>
+                                <input type="email" id="chinese-applicant-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="chinese-original-household">原户籍</label>
+                                <select id="chinese-original-household" required>
+                                    <option value="">请选择原户籍</option>
+                                    <!-- 户籍选项将由JavaScript动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="chinese-application-reason">申请理由</label>
+                                <textarea id="chinese-application-reason" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">提交申请</button>
+                        </form>
+                    </div>
+
+                    <!-- 非中国居民入籍申请表单 -->
+                    <div class="form-section hidden" id="foreigner-naturalization-form">
+                        <h3 class="form-section-title">非中国居民入籍申请</h3>
+                        <form id="foreigner-naturalization-form-data">
+                            <div class="form-group">
+                                <label for="foreigner-applicant-name">申请人姓名</label>
+                                <input type="text" id="foreigner-applicant-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="foreigner-applicant-passport">护照号码 (可选)</label>
+                                <input type="text" id="foreigner-applicant-passport">
+                            </div>
+                            <div class="form-group">
+                                <label for="foreigner-applicant-email">邮箱地址</label>
+                                <input type="email" id="foreigner-applicant-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="foreigner-original-nationality">原国籍</label>
+                                <select id="foreigner-original-nationality" required>
+                                    <option value="">请选择原国籍</option>
+                                    <!-- 国籍选项将由JavaScript动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="foreigner-application-reason">申请理由</label>
+                                <textarea id="foreigner-application-reason" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">提交申请</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-home-from-naturalization">返回首页</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 申请退籍页面 (默认隐藏) -->
+        <div id="exit-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title">申请退籍</h1>
+                    <div class="news-detail-meta">
+                        提供中国居民的退籍申请服务
+                    </div>
+                </div>
+                <div class="news-detail-content">
+                    <div class="form-section">
+                        <h3 class="form-section-title">退籍申请</h3>
+                        <form id="exit-form">
+                            <div class="form-group">
+                                <label for="exit-applicant-name">申请人姓名</label>
+                                <input type="text" id="exit-applicant-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exit-applicant-id">身份证号码 (可选)</label>
+                                <input type="text" id="exit-applicant-id">
+                            </div>
+                            <div class="form-group">
+                                <label for="exit-applicant-email">邮箱地址</label>
+                                <input type="email" id="exit-applicant-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exit-current-household">当前户籍</label>
+                                <select id="exit-current-household" required>
+                                    <option value="">请选择当前户籍</option>
+                                    <!-- 户籍选项将由JavaScript动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exit-target-nationality">目标国籍</label>
+                                <select id="exit-target-nationality" required>
+                                    <option value="">请选择目标国籍</option>
+                                    <!-- 国籍选项将由JavaScript动态生成 -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exit-application-reason">申请理由</label>
+                                <textarea id="exit-application-reason" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">提交申请</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-home-from-exit">返回首页</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 出入境服务页面 (默认隐藏) -->
+        <div id="entry-exit-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title">出入境服务</h1>
+                    <div class="news-detail-meta">
+                        提供护照、签证等出入境证件申请服务
+                    </div>
+                </div>
+                <div class="news-detail-content">
+                    <div class="form-section">
+                        <h3 class="form-section-title">申请出入境证件</h3>
+                        <form id="passport-application-form">
+                            <div class="form-group">
+                                <label for="passport-applicant-name">申请人姓名</label>
+                                <input type="text" id="passport-applicant-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-applicant-id">身份证号码</label>
+                                <input type="text" id="passport-applicant-id">
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-applicant-email">邮箱地址</label>
+                                <input type="email" id="passport-applicant-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-type">证件类型</label>
+                                <select id="passport-type" required>
+                                    <option value="">请选择证件类型</option>
+                                    <option value="passport">普通护照</option>
+                                    <option value="travel-permit">往来港澳通行证</option>
+                                    <option value="taiwan-permit">大陆居民往来台湾通行证</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-purpose">申请事由</label>
+                                <select id="passport-purpose" required>
+                                    <option value="">请选择申请事由</option>
+                                    <option value="tourism">旅游</option>
+                                    <option value="business">商务</option>
+                                    <option value="study">留学</option>
+                                    <option value="visit">探亲</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-destination">目的地国家/地区</label>
+                                <input type="text" id="passport-destination" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="passport-duration">预计出行时间</label>
+                                <input type="date" id="passport-duration" required>
+                            </div>
+                            <button type="submit" class="btn">提交申请</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-home-from-entry-exit">返回首页</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 人文林山页面 (默认隐藏) -->
+        <div id="culture-page" class="hidden">
+            <div class="news-detail">
+                <div class="news-detail-header">
+                    <h1 class="news-detail-title">人文林山</h1>
+                    <div class="news-detail-meta">
+                        林山市下辖县级行政单位介绍
+                    </div>
+                </div>
+                <div class="news-detail-content">
+                    <div class="county-grid" id="county-grid">
+                        <!-- 县级单位卡片将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-home-from-culture">返回首页</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 县级单位详情页面 (默认隐藏) -->
+        <div id="county-detail-page" class="hidden">
+            <div class="county-detail">
+                <div class="county-detail-header">
+                    <h1 class="county-detail-title" id="county-detail-title"></h1>
+                </div>
+                <div class="county-detail-content">
+                    <img id="county-detail-image" src="" alt="" class="county-detail-image hidden">
+                    <div id="county-detail-description">
+                        <!-- 县级单位详情内容将由JavaScript动态生成 -->
+                    </div>
+                </div>
+                <div class="back-to-news">
+                    <button class="btn" id="back-to-culture">返回人文林山</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 网站页脚 -->
+    <footer>
+        <div class="container">
+            <p id="footer-copyright">林山市人民政府版权所有 © 2025</p>
+            <p id="footer-address">地址：林山市中山路1号 邮编：123456</p>
+            <p id="footer-identifier">网站标识码：12345678 备案号：京ICP备12345678号</p>
+        </div>
+    </footer>
+
+    <script>
+        // 数据存储
+        let newsData = [
+            {
+                id: 1,
+                title: "林山市与新加坡签署友好城市合作协议",
+                content: "林山市与新加坡签署友好城市合作协议，双方将在经济、文化、教育等领域展开深入合作。此次合作将进一步加强两地在科技创新、人才培养和城市管理等方面的交流，推动林山市国际化进程。\n\n市长李明表示，新加坡在城市规划、环境保护和公共服务等方面有许多值得学习的经验，希望通过此次合作，引进先进理念和技术，提升林山市的综合竞争力。\n\n新加坡代表也表示，林山市在经济发展和城市建设方面取得了显著成就，期待双方能够在更多领域实现互利共赢。",
+                date: "2025-09-28",
+                category: "news",
+                author: "林山市人民政府办公室",
+                image: null
+            },
+            {
+                id: 2,
+                title: "林山市优化营商环境新举措正式实施",
+                content: "林山市推出优化营商环境新举措，简化企业办事流程，提高政务服务效率。这些措施包括：\n\n1. 推行'一窗受理'服务模式，减少企业跑腿次数\n2. 压缩企业开办时间，实现3个工作日内完成\n3. 建立企业服务绿色通道，为重点项目提供全程代办\n4. 完善在线服务平台，实现更多事项'一网通办'\n\n市营商局局长王强表示，这些举措旨在为企业提供更加便捷高效的服务，激发市场活力，促进经济高质量发展。\n\n据了解，今年以来，林山市已累计新增市场主体超过2万家，同比增长15%。",
+                date: "2025-09-25",
+                category: "news",
+                author: "林山市营商局",
+                image: null
+            },
+            {
+                id: 3,
+                title: "习近平同新加坡总统尚达曼就中新建交35周年互致贺电",
+                content: "习近平指出，中方愿同新加坡一道，以两国建交35周年为契机，进一步深化政治互信，推进各领域务实合作，加强人文交流，推动中新关系不断迈上新台阶。\n\n习近平强调，中新关系发展符合两国人民根本利益，也有利于地区和平稳定与发展繁荣。中方愿同新方一道，推动共建'一带一路'高质量发展，深化在数字经济、绿色发展等领域合作，为两国人民带来更多福祉。\n\n尚达曼表示，新中关系是国与国关系的典范，新加坡珍视同中国的友好合作关系，愿同中方一道，推动两国关系取得更大发展。",
+                date: "2025-10-04",
+                category: "important",
+                author: "新华社",
+                image: null
+            }
+        ];
+        
+        let suggestionsData = [];
+        let filesData = [
+            {
+                id: 1,
+                title: "林山市2025年政府工作报告",
+                description: "林山市2025年政府工作报告全文",
+                category: "report",
+                date: "2025-03-15",
+                filename: "林山市2025年政府工作报告.pdf",
+                size: "2.5MB"
+            },
+            {
+                id: 2,
+                title: "关于进一步优化营商环境的实施意见",
+                description: "林山市关于进一步优化营商环境的实施意见",
+                category: "policy",
+                date: "2025-08-20",
+                filename: "关于进一步优化营商环境的实施意见.pdf",
+                size: "1.2MB"
+            },
+            {
+                id: 3,
+                title: "林山市城市总体规划（2025-2035年）",
+                description: "林山市城市总体规划（2025-2035年）草案公示",
+                category: "other",
+                date: "2025-09-10",
+                filename: "林山市城市总体规划.pdf",
+                size: "5.8MB"
+            }
+        ];
+        
+        let nationalitiesData = [];
+        let householdsData = [];
+        
+        let chineseNaturalizationApplications = [];
+        let foreignerNaturalizationApplications = [];
+        let exitApplications = [];
+        let passportApplications = [];
+        
+        let headerLeftImage = null;
+        let alertContent = "林山市发布强降雨天气预警，请市民合理安排出行计划，注意防范地质灾害。";
+        
+        // 县级行政单位数据 - 初始为空数组
+        let countiesData = [];
+        
+        let features = {
+            "home": true,
+            "personal-service": true,
+            "enterprise-service": true,
+            "policy": true,
+            "interaction": true,
+            "culture": true,
+            "alert": true,
+            "news": true,
+            "important-news": true,
+            "suggestion": true
+        };
+        
+        let isAdminLoggedIn = false;
+        let currentAdmin = null;
+        
+        // 管理员账号数据 - 初始为空数组
+        let adminAccounts = [];
+        
+        // 待审核管理员账号数据
+        let pendingAdminAccounts = [];
+        
+        // 页脚信息
+        let footerInfo = {
+            address: "林山市中山路1号",
+            postcode: "123456",
+            identifier: "12345678",
+            icp: "京ICP备12345678号"
+        };
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNewsData();
+            loadSuggestions();
+            loadFeatures();
+            loadAlertContent();
+            loadHeaderLeftImage();
+            loadCounties();
+            loadFooterInfo();
+            loadAdminAccounts();
+            loadPendingAdminAccounts();
+            renderNews();
+            renderImportantNews();
+            renderFiles();
+            loadNationalities();
+            loadHouseholds();
+            loadApplications();
+            
+            // 更新人文林山二级菜单
+            updateCultureSubNav();
+            
+            // 首页导航点击事件
+            document.getElementById('home-nav').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('mobile-home-nav').addEventListener('click', function() {
+                showHomePage();
+                hideMobileNav();
+            });
+            
+            // 政府文件链接点击事件
+            document.getElementById('quick-gov-files').addEventListener('click', function() {
+                showGovFilesPage();
+            });
+            
+            // 申请入籍链接点击事件
+            document.getElementById('apply-naturalization-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showNaturalizationPage();
+            });
+            
+            document.getElementById('quick-naturalization').addEventListener('click', function() {
+                showNaturalizationPage();
+            });
+            
+            // 申请退籍链接点击事件
+            document.getElementById('apply-exit-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showExitPage();
+            });
+            
+            document.getElementById('quick-exit').addEventListener('click', function() {
+                showExitPage();
+            });
+            
+            // 出入境链接点击事件
+            document.getElementById('entry-exit-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showEntryExitPage();
+            });
+            
+            // 快速服务中的出入境点击事件
+            document.getElementById('quick-entry-exit').addEventListener('click', function() {
+                showEntryExitPage();
+            });
+            
+            // 人文林山快速服务点击事件
+            document.getElementById('quick-culture').addEventListener('click', function() {
+                showCulturePage();
+            });
+            
+            // 页面切换功能
+            document.getElementById('admin-login-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminLogin();
+            });
+            
+            document.getElementById('admin-register-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminRegister();
+            });
+            
+            document.getElementById('admin-panel-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+            });
+            
+            document.getElementById('logout-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                logout();
+            });
+            
+            document.getElementById('cancel-login').addEventListener('click', function() {
+                hideAdminLogin();
+            });
+            
+            document.getElementById('cancel-register').addEventListener('click', function() {
+                hideAdminRegister();
+            });
+            
+            document.getElementById('show-register-form').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminRegister();
+            });
+            
+            document.getElementById('show-login-form').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminLogin();
+            });
+            
+            document.getElementById('back-to-home').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-home-from-files').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-home-from-naturalization').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-home-from-exit').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-home-from-entry-exit').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-home-from-culture').addEventListener('click', function() {
+                showHomePage();
+            });
+            
+            document.getElementById('back-to-culture').addEventListener('click', function() {
+                showCulturePage();
+            });
+            
+            // 管理面板功能
+            document.getElementById('manage-news-btn').addEventListener('click', function() {
+                showNewsManagement();
+            });
+            
+            document.getElementById('manage-suggestions-btn').addEventListener('click', function() {
+                showSuggestionManagement();
+            });
+            
+            document.getElementById('manage-files-btn').addEventListener('click', function() {
+                showFileManagement();
+            });
+            
+            document.getElementById('manage-features-btn').addEventListener('click', function() {
+                showFeatureManagement();
+            });
+            
+            document.getElementById('manage-nationalities-btn').addEventListener('click', function() {
+                showNationalityManagement();
+            });
+            
+            document.getElementById('manage-applications-btn').addEventListener('click', function() {
+                showApplicationManagement();
+            });
+            
+            document.getElementById('manage-header-config-btn').addEventListener('click', function() {
+                showHeaderConfig();
+            });
+            
+            document.getElementById('manage-alert-btn').addEventListener('click', function() {
+                showAlertManagement();
+            });
+            
+            document.getElementById('manage-counties-btn').addEventListener('click', function() {
+                showCountyManagement();
+            });
+            
+            document.getElementById('manage-admin-btn').addEventListener('click', function() {
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminManagement();
+                } else {
+                    alert('只有超级管理员可以访问管理员账号管理功能！');
+                }
+            });
+            
+            document.getElementById('manage-admin-review-btn').addEventListener('click', function() {
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminReview();
+                } else {
+                    alert('只有超级管理员可以访问审核管理员账号功能！');
+                }
+            });
+            
+            document.getElementById('suggestion-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showSuggestionManagement();
+            });
+            
+            document.getElementById('news-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showNewsManagement();
+            });
+            
+            document.getElementById('file-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showFileManagement();
+            });
+            
+            document.getElementById('feature-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showFeatureManagement();
+            });
+            
+            document.getElementById('nationality-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showNationalityManagement();
+            });
+            
+            document.getElementById('application-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showApplicationManagement();
+            });
+            
+            document.getElementById('header-config-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showHeaderConfig();
+            });
+            
+            document.getElementById('alert-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showAlertManagement();
+            });
+            
+            document.getElementById('county-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showCountyManagement();
+            });
+            
+            document.getElementById('admin-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminPanel();
+                    showAdminManagement();
+                } else {
+                    alert('只有超级管理员可以访问管理员账号管理功能！');
+                }
+            });
+            
+            document.getElementById('admin-review-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminPanel();
+                    showAdminReview();
+                } else {
+                    alert('只有超级管理员可以访问审核管理员账号功能！');
+                }
+            });
+            
+            // 移动端导航链接
+            document.getElementById('mobile-apply-naturalization-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showNaturalizationPage();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-apply-exit-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showExitPage();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-entry-exit-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showEntryExitPage();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-suggestion-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showSuggestionManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-news-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showNewsManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-file-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showFileManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-feature-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showFeatureManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-nationality-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showNationalityManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-application-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showApplicationManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-header-config-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showHeaderConfig();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-alert-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showAlertManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-county-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAdminPanel();
+                showCountyManagement();
+                hideMobileNav();
+            });
+            
+            document.getElementById('mobile-admin-management-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminPanel();
+                    showAdminManagement();
+                    hideMobileNav();
+                } else {
+                    alert('只有超级管理员可以访问管理员账号管理功能！');
+                    hideMobileNav();
+                }
+            });
+            
+            document.getElementById('mobile-admin-review-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                // 权限检查
+                if (currentAdmin && currentAdmin.isSuperAdmin) {
+                    showAdminPanel();
+                    showAdminReview();
+                    hideMobileNav();
+                } else {
+                    alert('只有超级管理员可以访问审核管理员账号功能！');
+                    hideMobileNav();
+                }
+            });
+            
+            // 移动端菜单切换
+            document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+                toggleMobileNav();
+            });
+            
+            // 移动端子菜单切换
+            document.querySelectorAll('.mobile-sub-nav-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const subNav = this.parentElement.querySelector('.mobile-sub-nav');
+                    if (subNav.style.display === 'block') {
+                        subNav.style.display = 'none';
+                        this.textContent = '▶';
+                    } else {
+                        subNav.style.display = 'block';
+                        this.textContent = '▼';
+                    }
+                });
+            });
+            
+            // 登录表单提交
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // 检查管理员账号
+                const admin = adminAccounts.find(account => account.username === username && account.password === password);
+                if (admin) {
+                    loginSuccess(admin);
+                } else {
+                    alert('用户名或密码错误！');
+                }
+            });
+            
+            // 注册表单提交
+            document.getElementById('register-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('register-username').value;
+                const password = document.getElementById('register-password').value;
+                const email = document.getElementById('register-email').value;
+                
+                // 检查用户名是否已存在
+                if (adminAccounts.some(account => account.username === username)) {
+                    alert('该用户名已被占用，请选择其他用户名！');
+                    return;
+                }
+                
+                // 检查用户名是否已存在于待审核列表中
+                if (pendingAdminAccounts.some(account => account.username === username)) {
+                    alert('该用户名正在等待审核，请选择其他用户名！');
+                    return;
+                }
+                
+                // 特殊处理：用户名为"JD一jin"时直接注册为超级管理员
+                if (username === "JD一jin") {
+                    const adminAccount = {
+                        username: username,
+                        password: password,
+                        email: email,
+                        isSuperAdmin: true,
+                        status: 'active'
+                    };
+                    
+                    adminAccounts.push(adminAccount);
+                    saveAdminAccounts();
+                    
+                    alert('恭喜！您已成功注册为超级管理员，请登录！');
+                    hideAdminRegister();
+                    showAdminLogin();
+                } else {
+                    // 普通用户注册，需要审核
+                    const pendingAccount = {
+                        id: Date.now(),
+                        username: username,
+                        password: password,
+                        email: email,
+                        isSuperAdmin: false,
+                        status: 'pending',
+                        registerDate: new Date().toISOString().split('T')[0]
+                    };
+                    
+                    pendingAdminAccounts.push(pendingAccount);
+                    savePendingAdminAccounts();
+                    
+                    alert('您的注册申请已提交，请等待超级管理员审核！');
+                    hideAdminRegister();
+                    showHomePage();
+                }
+            });
+            
+            // 网上信访提交表单
+            document.getElementById('suggestion-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const contact = document.getElementById('contact').value;
+                const content = document.getElementById('suggestion-content').value;
+                
+                const suggestion = {
+                    id: Date.now(),
+                    name: name,
+                    contact: contact,
+                    content: content,
+                    date: new Date().toISOString().split('T')[0]
+                };
+                
+                suggestionsData.push(suggestion);
+                saveSuggestions();
+                
+                alert('您的信访已提交成功！我们会尽快处理。');
+                document.getElementById('suggestion-form').reset();
+            });
+            
+            // 申请类型切换
+            document.querySelectorAll('input[name="applicant-type"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'chinese') {
+                        document.getElementById('chinese-naturalization-form').classList.remove('hidden');
+                        document.getElementById('foreigner-naturalization-form').classList.add('hidden');
+                    } else {
+                        document.getElementById('chinese-naturalization-form').classList.add('hidden');
+                        document.getElementById('foreigner-naturalization-form').classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // 中国居民入籍申请表单
+            document.getElementById('chinese-naturalization-form-data').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('chinese-applicant-name').value;
+                const id = document.getElementById('chinese-applicant-id').value;
+                const email = document.getElementById('chinese-applicant-email').value;
+                const household = document.getElementById('chinese-original-household').value;
+                const reason = document.getElementById('chinese-application-reason').value;
+                
+                const application = {
+                    id: Date.now(),
+                    name: name,
+                    idNumber: id,
+                    email: email,
+                    household: household,
+                    reason: reason,
+                    date: new Date().toISOString().split('T')[0],
+                    status: 'pending',
+                    adminReason: '',
+                    type: 'chinese-naturalization'
+                };
+                
+                chineseNaturalizationApplications.push(application);
+                saveApplications();
+                
+                alert('入籍申请已提交成功！我们会尽快审核您的申请。');
+                document.getElementById('chinese-naturalization-form-data').reset();
+            });
+            
+            // 非中国居民入籍申请表单
+            document.getElementById('foreigner-naturalization-form-data').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('foreigner-applicant-name').value;
+                const passport = document.getElementById('foreigner-applicant-passport').value;
+                const email = document.getElementById('foreigner-applicant-email').value;
+                const nationality = document.getElementById('foreigner-original-nationality').value;
+                const reason = document.getElementById('foreigner-application-reason').value;
+                
+                const application = {
+                    id: Date.now(),
+                    name: name,
+                    passportNumber: passport,
+                    email: email,
+                    nationality: nationality,
+                    reason: reason,
+                    date: new Date().toISOString().split('T')[0],
+                    status: 'pending',
+                    adminReason: '',
+                    type: 'foreigner-naturalization'
+                };
+                
+                foreignerNaturalizationApplications.push(application);
+                saveApplications();
+                
+                alert('入籍申请已提交成功！我们会尽快审核您的申请。');
+                document.getElementById('foreigner-naturalization-form-data').reset();
+            });
+            
+            // 退籍申请表单
+            document.getElementById('exit-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('exit-applicant-name').value;
+                const id = document.getElementById('exit-applicant-id').value;
+                const email = document.getElementById('exit-applicant-email').value;
+                const household = document.getElementById('exit-current-household').value;
+                const targetNationality = document.getElementById('exit-target-nationality').value;
+                const reason = document.getElementById('exit-application-reason').value;
+                
+                const application = {
+                    id: Date.now(),
+                    name: name,
+                    idNumber: id,
+                    email: email,
+                    household: household,
+                    targetNationality: targetNationality,
+                    reason: reason,
+                    date: new Date().toISOString().split('T')[0],
+                    status: 'pending',
+                    adminReason: '',
+                    type: 'exit'
+                };
+                
+                exitApplications.push(application);
+                saveApplications();
+                
+                alert('退籍申请已提交成功！我们会尽快审核您的申请。');
+                document.getElementById('exit-form').reset();
+            });
+            
+            // 出入境证件申请表单
+            document.getElementById('passport-application-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('passport-applicant-name').value;
+                const id = document.getElementById('passport-applicant-id').value;
+                const email = document.getElementById('passport-applicant-email').value;
+                const type = document.getElementById('passport-type').value;
+                const purpose = document.getElementById('passport-purpose').value;
+                const destination = document.getElementById('passport-destination').value;
+                const duration = document.getElementById('passport-duration').value;
+                
+                const application = {
+                    id: Date.now(),
+                    name: name,
+                    idNumber: id,
+                    email: email,
+                    type: type,
+                    purpose: purpose,
+                    destination: destination,
+                    duration: duration,
+                    date: new Date().toISOString().split('T')[0],
+                    status: 'pending',
+                    adminReason: ''
+                };
+                
+                passportApplications.push(application);
+                saveApplications();
+                
+                alert('出入境证件申请已提交成功！我们会尽快处理您的申请。');
+                document.getElementById('passport-application-form').reset();
+            });
+            
+            // 添加新闻表单
+            document.getElementById('add-news-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('news-title').value;
+                const content = document.getElementById('news-content').value;
+                const author = document.getElementById('news-author').value;
+                const category = document.getElementById('news-category').value;
+                const imageFile = document.getElementById('news-image').files[0];
+                
+                let imageUrl = null;
+                if (imageFile) {
+                    // 将图片转换为Base64并存储
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imageUrl = e.target.result;
+                        
+                        const newsItem = {
+                            id: Date.now(),
+                            title: title,
+                            content: content,
+                            author: author,
+                            date: new Date().toISOString().split('T')[0],
+                            category: category,
+                            image: imageUrl
+                        };
+                        
+                        newsData.push(newsItem);
+                        saveNewsData();
+                        
+                        // 重新渲染新闻
+                        renderNews();
+                        renderImportantNews();
+                        renderNewsAdmin();
+                        
+                        alert('新闻添加成功！');
+                        document.getElementById('add-news-form').reset();
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    const newsItem = {
+                        id: Date.now(),
+                        title: title,
+                        content: content,
+                        author: author,
+                        date: new Date().toISOString().split('T')[0],
+                        category: category,
+                        image: null
+                    };
+                    
+                    newsData.push(newsItem);
+                    saveNewsData();
+                    
+                    // 重新渲染新闻
+                    renderNews();
+                    renderImportantNews();
+                    renderNewsAdmin();
+                    
+                    alert('新闻添加成功！');
+                    document.getElementById('add-news-form').reset();
+                }
+            });
+            
+            // 添加文件表单
+            document.getElementById('add-file-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('file-title').value;
+                const description = document.getElementById('file-description').value;
+                const category = document.getElementById('file-category').value;
+                const fileInput = document.getElementById('file-upload').files[0];
+                
+                if (!fileInput) {
+                    alert('请选择要上传的文件！');
+                    return;
+                }
+                
+                const fileItem = {
+                    id: Date.now(),
+                    title: title,
+                    description: description,
+                    category: category,
+                    date: new Date().toISOString().split('T')[0],
+                    filename: fileInput.name,
+                    size: formatFileSize(fileInput.size)
+                };
+                
+                filesData.push(fileItem);
+                
+                // 重新渲染文件列表
+                renderFiles();
+                renderFilesAdmin();
+                
+                alert('文件添加成功！');
+                document.getElementById('add-file-form').reset();
+            });
+            
+            // 添加国籍/户籍表单
+            document.getElementById('add-nationality-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('nationality-name').value;
+                const type = document.getElementById('nationality-type').value;
+                
+                if (type === 'nationality') {
+                    nationalitiesData.push(name);
+                    renderNationalityOptions();
+                } else {
+                    householdsData.push(name);
+                    renderHouseholdOptions();
+                }
+                
+                renderNationalitiesAdmin();
+                
+                alert('选项添加成功！');
+                document.getElementById('add-nationality-form').reset();
+            });
+            
+            // 添加县级单位表单
+            document.getElementById('add-county-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('county-name').value;
+                const description = document.getElementById('county-description').value;
+                const imageFile = document.getElementById('county-image').files[0];
+                
+                if (imageFile) {
+                    // 将图片转换为Base64并存储
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imageUrl = e.target.result;
+                        
+                        const countyItem = {
+                            id: Date.now(),
+                            name: name,
+                            description: description,
+                            image: imageUrl
+                        };
+                        
+                        countiesData.push(countyItem);
+                        saveCounties();
+                        
+                        // 重新渲染县级单位
+                        renderCountiesAdmin();
+                        updateCultureSubNav();
+                        renderCulturePage();
+                        
+                        alert('县级单位添加成功！');
+                        document.getElementById('add-county-form').reset();
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    const countyItem = {
+                        id: Date.now(),
+                        name: name,
+                        description: description,
+                        image: null
+                    };
+                    
+                    countiesData.push(countyItem);
+                    saveCounties();
+                    
+                    // 重新渲染县级单位
+                    renderCountiesAdmin();
+                    updateCultureSubNav();
+                    renderCulturePage();
+                    
+                    alert('县级单位添加成功！');
+                    document.getElementById('add-county-form').reset();
+                }
+            });
+            
+            // 标题栏图片表单
+            document.getElementById('header-image-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const imageFile = document.getElementById('header-image-upload').files[0];
+                
+                if (!imageFile) {
+                    alert('请选择要上传的图片！');
+                    return;
+                }
+                
+                // 将图片转换为Base64并存储
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    headerLeftImage = e.target.result;
+                    saveHeaderLeftImage();
+                    updateHeaderLeftImage();
+                    
+                    alert('标题栏图片已更新！');
+                };
+                reader.readAsDataURL(imageFile);
+            });
+            
+            // 移除标题栏图片
+            document.getElementById('remove-header-image').addEventListener('click', function() {
+                headerLeftImage = null;
+                saveHeaderLeftImage();
+                updateHeaderLeftImage();
+                
+                alert('标题栏图片已移除！');
+            });
+            
+            // 页脚信息配置表单
+            document.getElementById('footer-config-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const address = document.getElementById('footer-address').value;
+                const postcode = document.getElementById('footer-postcode').value;
+                const identifier = document.getElementById('footer-identifier').value;
+                const icp = document.getElementById('footer-icp').value;
+                
+                footerInfo = {
+                    address: address,
+                    postcode: postcode,
+                    identifier: identifier,
+                    icp: icp
+                };
+                
+                saveFooterInfo();
+                updateFooterDisplay();
+                
+                alert('页脚信息已保存！');
+            });
+            
+            // 预警信息配置表单
+            document.getElementById('alert-config-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const content = document.getElementById('alert-content').value;
+                const isEnabled = document.getElementById('feature-alert').checked;
+                
+                alertContent = content;
+                features['alert'] = isEnabled;
+                
+                saveAlertContent();
+                saveFeatures();
+                updateAlertDisplay();
+                applyFeatures();
+                
+                alert('预警信息设置已保存！');
+            });
+            
+            // 保存功能设置
+            document.getElementById('save-features').addEventListener('click', function() {
+                saveFeatures();
+                alert('功能设置已保存！');
+                applyFeatures();
+            });
+            
+            // 添加管理员表单
+            document.getElementById('add-admin-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+                const email = document.getElementById('admin-email').value;
+                
+                // 检查用户名是否已存在
+                if (adminAccounts.some(account => account.username === username)) {
+                    alert('该用户名已存在，请使用其他用户名！');
+                    return;
+                }
+                
+                // 检查用户名是否已存在于待审核列表中
+                if (pendingAdminAccounts.some(account => account.username === username)) {
+                    alert('该用户名正在等待审核，请选择其他用户名！');
+                    return;
+                }
+                
+                const adminAccount = {
+                    username: username,
+                    password: password,
+                    email: email,
+                    isSuperAdmin: false,
+                    status: 'active'
+                };
+                
+                adminAccounts.push(adminAccount);
+                saveAdminAccounts();
+                renderAdminsAdmin();
+                
+                alert('管理员账号添加成功！');
+                document.getElementById('add-admin-form').reset();
+            });
+            
+            // 新闻编辑功能
+            document.getElementById('edit-news-btn').addEventListener('click', function() {
+                if (isAdminLoggedIn) {
+                    showAdminPanel();
+                    showNewsManagement();
+                } else {
+                    alert('新闻编辑功能需要管理员权限，请先登录管理员账号。');
+                    showAdminLogin();
+                }
+            });
+            
+            // 返回新闻列表
+            document.getElementById('back-to-news-list').addEventListener('click', function() {
+                document.getElementById('news-detail-page').classList.add('hidden');
+                document.getElementById('home-page').classList.remove('hidden');
+            });
+        });
+        
+        // 加载新闻数据
+        function loadNewsData() {
+            const savedNewsData = localStorage.getItem('linshan-gov-news');
+            if (savedNewsData) {
+                newsData = JSON.parse(savedNewsData);
+            }
+        }
+        
+        // 保存新闻数据
+        function saveNewsData() {
+            localStorage.setItem('linshan-gov-news', JSON.stringify(newsData));
+        }
+        
+        // 加载网上信访数据
+        function loadSuggestions() {
+            const savedSuggestions = localStorage.getItem('linshan-gov-suggestions');
+            if (savedSuggestions) {
+                suggestionsData = JSON.parse(savedSuggestions);
+            }
+        }
+        
+        // 保存网上信访数据
+        function saveSuggestions() {
+            localStorage.setItem('linshan-gov-suggestions', JSON.stringify(suggestionsData));
+        }
+        
+        // 渲染新闻列表
+        function renderNews() {
+            const newsList = document.getElementById('news-list');
+            newsList.innerHTML = '';
+            
+            const newsItems = newsData.filter(item => item.category === 'news');
+            
+            newsItems.forEach(item => {
+                const li = document.createElement('li');
+                
+                if (item.image) {
+                    const img = document.createElement('img');
+                    img.src = item.image;
+                    img.alt = item.title;
+                    img.className = 'news-image-left';
+                    li.appendChild(img);
+                }
+                
+                const contentDiv = document.createElement('div');
+                
+                const title = document.createElement('span');
+                title.className = 'news-title';
+                title.textContent = item.title;
+                title.addEventListener('click', function() {
+                    showNewsDetail(item);
+                });
+                contentDiv.appendChild(title);
+                
+                const meta = document.createElement('div');
+                meta.className = 'news-date';
+                meta.innerHTML = `${item.date} <span class="news-author">发布者：${item.author}</span>`;
+                contentDiv.appendChild(meta);
+                
+                li.appendChild(contentDiv);
+                
+                newsList.appendChild(li);
+            });
+        }
+        
+        // 渲染要闻
+        function renderImportantNews() {
+            const importantNews = document.getElementById('important-news');
+            importantNews.innerHTML = '';
+            
+            const importantItems = newsData.filter(item => item.category === 'important');
+            
+            importantItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                
+                if (item.image) {
+                    const img = document.createElement('img');
+                    img.src = item.image;
+                    img.alt = item.title;
+                    img.className = 'news-image-top';
+                    div.appendChild(img);
+                }
+                
+                const title = document.createElement('h3');
+                title.textContent = item.title;
+                title.style.cursor = 'pointer';
+                title.style.color = '#0066cc';
+                title.addEventListener('click', function() {
+                    showNewsDetail(item);
+                });
+                div.appendChild(title);
+                
+                const content = document.createElement('p');
+                content.textContent = item.content.length > 150 ? item.content.substring(0, 150) + '...' : item.content;
+                div.appendChild(content);
+                
+                const meta = document.createElement('p');
+                meta.className = 'news-date';
+                meta.innerHTML = `${item.date} <span class="news-author">发布者：${item.author}</span>`;
+                div.appendChild(meta);
+                
+                const readMore = document.createElement('a');
+                readMore.href = '#';
+                readMore.textContent = '阅读全文';
+                readMore.style.color = '#0066cc';
+                readMore.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showNewsDetail(item);
+                });
+                div.appendChild(readMore);
+                
+                importantNews.appendChild(div);
+            });
+        }
+        
+        // 渲染政府文件列表
+        function renderFiles() {
+            const filesList = document.getElementById('gov-files-list');
+            filesList.innerHTML = '';
+            
+            filesData.forEach(item => {
+                const li = document.createElement('li');
+                
+                const fileInfo = document.createElement('div');
+                fileInfo.style.flex = '1';
+                
+                const title = document.createElement('div');
+                title.className = 'news-title';
+                title.textContent = item.title;
+                fileInfo.appendChild(title);
+                
+                const desc = document.createElement('div');
+                desc.textContent = item.description;
+                desc.style.fontSize = '14px';
+                desc.style.color = '#666';
+                desc.style.marginTop = '5px';
+                fileInfo.appendChild(desc);
+                
+                const meta = document.createElement('div');
+                meta.className = 'news-date';
+                meta.textContent = `${item.date} | ${item.size}`;
+                fileInfo.appendChild(meta);
+                
+                li.appendChild(fileInfo);
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'btn';
+                downloadBtn.textContent = '下载';
+                downloadBtn.addEventListener('click', function() {
+                    alert(`开始下载: ${item.filename}`);
+                    // 在实际应用中，这里应该调用文件下载API
+                });
+                li.appendChild(downloadBtn);
+                
+                filesList.appendChild(li);
+            });
+        }
+        
+        // 加载国籍选项
+        function loadNationalities() {
+            const savedNationalities = localStorage.getItem('linshan-gov-nationalities');
+            if (savedNationalities) {
+                nationalitiesData = JSON.parse(savedNationalities);
+            }
+            renderNationalityOptions();
+        }
+        
+        // 加载户籍选项
+        function loadHouseholds() {
+            const savedHouseholds = localStorage.getItem('linshan-gov-households');
+            if (savedHouseholds) {
+                householdsData = JSON.parse(savedHouseholds);
+            }
+            renderHouseholdOptions();
+        }
+        
+        // 加载申请数据
+        function loadApplications() {
+            const savedChineseNaturalizationApplications = localStorage.getItem('linshan-gov-chinese-naturalization-applications');
+            if (savedChineseNaturalizationApplications) {
+                chineseNaturalizationApplications = JSON.parse(savedChineseNaturalizationApplications);
+            }
+            
+            const savedForeignerNaturalizationApplications = localStorage.getItem('linshan-gov-foreigner-naturalization-applications');
+            if (savedForeignerNaturalizationApplications) {
+                foreignerNaturalizationApplications = JSON.parse(savedForeignerNaturalizationApplications);
+            }
+            
+            const savedExitApplications = localStorage.getItem('linshan-gov-exit-applications');
+            if (savedExitApplications) {
+                exitApplications = JSON.parse(savedExitApplications);
+            }
+            
+            const savedPassportApplications = localStorage.getItem('linshan-gov-passport-applications');
+            if (savedPassportApplications) {
+                passportApplications = JSON.parse(savedPassportApplications);
+            }
+        }
+        
+        // 保存申请数据
+        function saveApplications() {
+            localStorage.setItem('linshan-gov-chinese-naturalization-applications', JSON.stringify(chineseNaturalizationApplications));
+            localStorage.setItem('linshan-gov-foreigner-naturalization-applications', JSON.stringify(foreignerNaturalizationApplications));
+            localStorage.setItem('linshan-gov-exit-applications', JSON.stringify(exitApplications));
+            localStorage.setItem('linshan-gov-passport-applications', JSON.stringify(passportApplications));
+        }
+        
+        // 加载标题栏左侧图片
+        function loadHeaderLeftImage() {
+            const savedHeaderLeftImage = localStorage.getItem('linshan-gov-header-left-image');
+            if (savedHeaderLeftImage) {
+                headerLeftImage = savedHeaderLeftImage;
+                updateHeaderLeftImage();
+            }
+        }
+        
+        // 保存标题栏左侧图片
+        function saveHeaderLeftImage() {
+            localStorage.setItem('linshan-gov-header-left-image', headerLeftImage);
+        }
+        
+        // 更新标题栏左侧图片显示
+        function updateHeaderLeftImage() {
+            const headerLeftImageElement = document.getElementById('header-left-image');
+            const headerImagePreview = document.getElementById('header-image-preview');
+            
+            if (headerLeftImage) {
+                headerLeftImageElement.src = headerLeftImage;
+                headerLeftImageElement.classList.remove('hidden');
+                headerImagePreview.src = headerLeftImage;
+                headerImagePreview.classList.remove('hidden');
+            } else {
+                headerLeftImageElement.classList.add('hidden');
+                headerImagePreview.classList.add('hidden');
+            }
+        }
+        
+        // 加载预警提示内容
+        function loadAlertContent() {
+            const savedAlertContent = localStorage.getItem('linshan-gov-alert-content');
+            if (savedAlertContent) {
+                alertContent = savedAlertContent;
+            }
+            updateAlertDisplay();
+        }
+        
+        // 保存预警提示内容
+        function saveAlertContent() {
+            localStorage.setItem('linshan-gov-alert-content', alertContent);
+        }
+        
+        // 更新预警提示显示
+        function updateAlertDisplay() {
+            const alertDisplay = document.getElementById('alert-content-display');
+            alertDisplay.textContent = alertContent;
+        }
+        
+        // 加载页脚信息
+        function loadFooterInfo() {
+            const savedFooterInfo = localStorage.getItem('linshan-gov-footer-info');
+            if (savedFooterInfo) {
+                footerInfo = JSON.parse(savedFooterInfo);
+            }
+            updateFooterDisplay();
+        }
+        
+        // 保存页脚信息
+        function saveFooterInfo() {
+            localStorage.setItem('linshan-gov-footer-info', JSON.stringify(footerInfo));
+        }
+        
+        // 更新页脚显示
+        function updateFooterDisplay() {
+            document.getElementById('footer-address').textContent = `地址：${footerInfo.address} 邮编：${footerInfo.postcode}`;
+            document.getElementById('footer-identifier').textContent = `网站标识码：${footerInfo.identifier} 备案号：${footerInfo.icp}`;
+            
+            // 更新表单中的值
+            if (document.getElementById('footer-address')) {
+                document.getElementById('footer-address').value = footerInfo.address;
+                document.getElementById('footer-postcode').value = footerInfo.postcode;
+                document.getElementById('footer-identifier').value = footerInfo.identifier;
+                document.getElementById('footer-icp').value = footerInfo.icp;
+            }
+        }
+        
+        // 加载管理员账号
+        function loadAdminAccounts() {
+            const savedAdminAccounts = localStorage.getItem('linshan-gov-admin-accounts');
+            if (savedAdminAccounts) {
+                adminAccounts = JSON.parse(savedAdminAccounts);
+            }
+        }
+        
+        // 保存管理员账号
+        function saveAdminAccounts() {
+            localStorage.setItem('linshan-gov-admin-accounts', JSON.stringify(adminAccounts));
+        }
+        
+        // 加载待审核管理员账号
+        function loadPendingAdminAccounts() {
+            const savedPendingAdminAccounts = localStorage.getItem('linshan-gov-pending-admin-accounts');
+            if (savedPendingAdminAccounts) {
+                pendingAdminAccounts = JSON.parse(savedPendingAdminAccounts);
+            }
+        }
+        
+        // 保存待审核管理员账号
+        function savePendingAdminAccounts() {
+            localStorage.setItem('linshan-gov-pending-admin-accounts', JSON.stringify(pendingAdminAccounts));
+        }
+        
+        // 加载县级单位数据
+        function loadCounties() {
+            const savedCounties = localStorage.getItem('linshan-gov-counties');
+            if (savedCounties) {
+                countiesData = JSON.parse(savedCounties);
+            }
+            renderCulturePage();
+        }
+        
+        // 保存县级单位数据
+        function saveCounties() {
+            localStorage.setItem('linshan-gov-counties', JSON.stringify(countiesData));
+        }
+        
+        // 更新人文林山二级菜单
+        function updateCultureSubNav() {
+            const cultureSubNav = document.getElementById('culture-sub-nav');
+            cultureSubNav.innerHTML = '';
+            
+            const mobileCultureSubNav = document.getElementById('mobile-culture-sub-nav');
+            mobileCultureSubNav.innerHTML = '';
+            
+            countiesData.forEach(county => {
+                // 桌面版
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = county.name;
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showCountyDetail(county);
+                });
+                cultureSubNav.appendChild(link);
+                
+                // 移动版
+                const mobileLink = document.createElement('a');
+                mobileLink.href = '#';
+                mobileLink.textContent = county.name;
+                mobileLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showCountyDetail(county);
+                    hideMobileNav();
+                });
+                mobileCultureSubNav.appendChild(mobileLink);
+            });
+        }
+        
+        // 渲染人文林山页面
+        function renderCulturePage() {
+            const countyGrid = document.getElementById('county-grid');
+            countyGrid.innerHTML = '';
+            
+            if (countiesData.length === 0) {
+                countyGrid.innerHTML = '<p>暂无县级单位数据，请管理员添加县级单位信息。</p>';
+                return;
+            }
+            
+            countiesData.forEach(county => {
+                const card = document.createElement('div');
+                card.className = 'county-card';
+                card.addEventListener('click', function() {
+                    showCountyDetail(county);
+                });
+                
+                if (county.image) {
+                    const img = document.createElement('img');
+                    img.src = county.image;
+                    img.alt = county.name;
+                    img.className = 'county-image';
+                    card.appendChild(img);
+                } else {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'county-image';
+                    placeholder.style.backgroundColor = '#e9ecef';
+                    placeholder.style.display = 'flex';
+                    placeholder.style.alignItems = 'center';
+                    placeholder.style.justifyContent = 'center';
+                    placeholder.style.color = '#6c757d';
+                    placeholder.textContent = '暂无图片';
+                    card.appendChild(placeholder);
+                }
+                
+                const info = document.createElement('div');
+                info.className = 'county-info';
+                
+                const name = document.createElement('div');
+                name.className = 'county-name';
+                name.textContent = county.name;
+                info.appendChild(name);
+                
+                const description = document.createElement('div');
+                description.className = 'county-description';
+                description.textContent = county.description.length > 100 ? county.description.substring(0, 100) + '...' : county.description;
+                info.appendChild(description);
+                
+                card.appendChild(info);
+                countyGrid.appendChild(card);
+            });
+        }
+        
+        // 渲染国籍选项
+        function renderNationalityOptions() {
+            const chineseNationalitySelect = document.getElementById('foreigner-original-nationality');
+            const exitNationalitySelect = document.getElementById('exit-target-nationality');
+            
+            // 保留第一个选项
+            while (chineseNationalitySelect.options.length > 1) {
+                chineseNationalitySelect.remove(1);
+            }
+            
+            while (exitNationalitySelect.options.length > 1) {
+                exitNationalitySelect.remove(1);
+            }
+            
+            nationalitiesData.forEach(nationality => {
+                const option1 = document.createElement('option');
+                option1.value = nationality;
+                option1.textContent = nationality;
+                chineseNationalitySelect.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = nationality;
+                option2.textContent = nationality;
+                exitNationalitySelect.appendChild(option2);
+            });
+            
+            // 保存到本地存储
+            localStorage.setItem('linshan-gov-nationalities', JSON.stringify(nationalitiesData));
+        }
+        
+        // 渲染户籍选项
+        function renderHouseholdOptions() {
+            const chineseHouseholdSelect = document.getElementById('chinese-original-household');
+            const exitHouseholdSelect = document.getElementById('exit-current-household');
+            
+            // 保留第一个选项
+            while (chineseHouseholdSelect.options.length > 1) {
+                chineseHouseholdSelect.remove(1);
+            }
+            
+            while (exitHouseholdSelect.options.length > 1) {
+                exitHouseholdSelect.remove(1);
+            }
+            
+            householdsData.forEach(household => {
+                const option1 = document.createElement('option');
+                option1.value = household;
+                option1.textContent = household;
+                chineseHouseholdSelect.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = household;
+                option2.textContent = household;
+                exitHouseholdSelect.appendChild(option2);
+            });
+            
+            // 保存到本地存储
+            localStorage.setItem('linshan-gov-households', JSON.stringify(householdsData));
+        }
+        
+        // 渲染中国居民入籍申请列表（管理员界面）
+        function renderChineseNaturalizationApplicationsAdmin() {
+            const applicationsList = document.getElementById('chinese-naturalization-applications-list');
+            applicationsList.innerHTML = '';
+            
+            if (chineseNaturalizationApplications.length === 0) {
+                applicationsList.innerHTML = '<p>暂无中国居民入籍申请</p>';
+                return;
+            }
+            
+            chineseNaturalizationApplications.forEach((application, index) => {
+                const div = document.createElement('div');
+                div.className = 'application-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = `申请人: ${application.name}`;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'application-meta';
+                meta.innerHTML = `
+                    <div>申请日期: ${application.date}</div>
+                    <div>邮箱: ${application.email}</div>
+                    <div>身份证: ${application.idNumber || '未提供'}</div>
+                    <div>原户籍: ${application.household}</div>
+                `;
+                div.appendChild(meta);
+                
+                const reason = document.createElement('p');
+                reason.textContent = `申请理由: ${application.reason}`;
+                div.appendChild(reason);
+                
+                const status = document.createElement('div');
+                status.innerHTML = `状态: <span class="application-status status-${application.status}">${getStatusText(application.status)}</span>`;
+                div.appendChild(status);
+                
+                if (application.adminReason) {
+                    const adminReason = document.createElement('p');
+                    adminReason.textContent = `审批意见: ${application.adminReason}`;
+                    adminReason.style.fontSize = '14px';
+                    adminReason.style.color = '#666';
+                    adminReason.style.marginTop = '10px';
+                    div.appendChild(adminReason);
+                }
+                
+                if (application.status === 'pending') {
+                    const actions = document.createElement('div');
+                    actions.className = 'application-actions';
+                    
+                    const approveBtn = document.createElement('button');
+                    approveBtn.className = 'btn btn-success';
+                    approveBtn.textContent = '同意';
+                    approveBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入审批意见（可选）:');
+                        application.status = 'approved';
+                        application.adminReason = reason || '';
+                        saveApplications();
+                        renderChineseNaturalizationApplicationsAdmin();
+                    });
+                    
+                    const rejectBtn = document.createElement('button');
+                    rejectBtn.className = 'btn btn-danger';
+                    rejectBtn.textContent = '拒绝';
+                    rejectBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入拒绝原因:');
+                        if (reason) {
+                            application.status = 'rejected';
+                            application.adminReason = reason;
+                            saveApplications();
+                            renderChineseNaturalizationApplicationsAdmin();
+                        }
+                    });
+                    
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+                    div.appendChild(actions);
+                }
+                
+                applicationsList.appendChild(div);
+            });
+        }
+        
+        // 渲染非中国居民入籍申请列表（管理员界面）
+        function renderForeignerNaturalizationApplicationsAdmin() {
+            const applicationsList = document.getElementById('foreigner-naturalization-applications-list');
+            applicationsList.innerHTML = '';
+            
+            if (foreignerNaturalizationApplications.length === 0) {
+                applicationsList.innerHTML = '<p>暂无非中国居民入籍申请</p>';
+                return;
+            }
+            
+            foreignerNaturalizationApplications.forEach((application, index) => {
+                const div = document.createElement('div');
+                div.className = 'application-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = `申请人: ${application.name}`;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'application-meta';
+                meta.innerHTML = `
+                    <div>申请日期: ${application.date}</div>
+                    <div>邮箱: ${application.email}</div>
+                    <div>护照号: ${application.passportNumber || '未提供'}</div>
+                    <div>原国籍: ${application.nationality}</div>
+                `;
+                div.appendChild(meta);
+                
+                const reason = document.createElement('p');
+                reason.textContent = `申请理由: ${application.reason}`;
+                div.appendChild(reason);
+                
+                const status = document.createElement('div');
+                status.innerHTML = `状态: <span class="application-status status-${application.status}">${getStatusText(application.status)}</span>`;
+                div.appendChild(status);
+                
+                if (application.adminReason) {
+                    const adminReason = document.createElement('p');
+                    adminReason.textContent = `审批意见: ${application.adminReason}`;
+                    adminReason.style.fontSize = '14px';
+                    adminReason.style.color = '#666';
+                    adminReason.style.marginTop = '10px';
+                    div.appendChild(adminReason);
+                }
+                
+                if (application.status === 'pending') {
+                    const actions = document.createElement('div');
+                    actions.className = 'application-actions';
+                    
+                    const approveBtn = document.createElement('button');
+                    approveBtn.className = 'btn btn-success';
+                    approveBtn.textContent = '同意';
+                    approveBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入审批意见（可选）:');
+                        application.status = 'approved';
+                        application.adminReason = reason || '';
+                        saveApplications();
+                        renderForeignerNaturalizationApplicationsAdmin();
+                    });
+                    
+                    const rejectBtn = document.createElement('button');
+                    rejectBtn.className = 'btn btn-danger';
+                    rejectBtn.textContent = '拒绝';
+                    rejectBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入拒绝原因:');
+                        if (reason) {
+                            application.status = 'rejected';
+                            application.adminReason = reason;
+                            saveApplications();
+                            renderForeignerNaturalizationApplicationsAdmin();
+                        }
+                    });
+                    
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+                    div.appendChild(actions);
+                }
+                
+                applicationsList.appendChild(div);
+            });
+        }
+        
+        // 渲染退籍申请列表（管理员界面）
+        function renderExitApplicationsAdmin() {
+            const applicationsList = document.getElementById('exit-applications-list');
+            applicationsList.innerHTML = '';
+            
+            if (exitApplications.length === 0) {
+                applicationsList.innerHTML = '<p>暂无退籍申请</p>';
+                return;
+            }
+            
+            exitApplications.forEach((application, index) => {
+                const div = document.createElement('div');
+                div.className = 'application-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = `申请人: ${application.name}`;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'application-meta';
+                meta.innerHTML = `
+                    <div>申请日期: ${application.date}</div>
+                    <div>邮箱: ${application.email}</div>
+                    <div>身份证: ${application.idNumber || '未提供'}</div>
+                    <div>当前户籍: ${application.household}</div>
+                    <div>目标国籍: ${application.targetNationality}</div>
+                `;
+                div.appendChild(meta);
+                
+                const reason = document.createElement('p');
+                reason.textContent = `申请理由: ${application.reason}`;
+                div.appendChild(reason);
+                
+                const status = document.createElement('div');
+                status.innerHTML = `状态: <span class="application-status status-${application.status}">${getStatusText(application.status)}</span>`;
+                div.appendChild(status);
+                
+                if (application.adminReason) {
+                    const adminReason = document.createElement('p');
+                    adminReason.textContent = `审批意见: ${application.adminReason}`;
+                    adminReason.style.fontSize = '14px';
+                    adminReason.style.color = '#666';
+                    adminReason.style.marginTop = '10px';
+                    div.appendChild(adminReason);
+                }
+                
+                if (application.status === 'pending') {
+                    const actions = document.createElement('div');
+                    actions.className = 'application-actions';
+                    
+                    const approveBtn = document.createElement('button');
+                    approveBtn.className = 'btn btn-success';
+                    approveBtn.textContent = '同意';
+                    approveBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入审批意见（可选）:');
+                        application.status = 'approved';
+                        application.adminReason = reason || '';
+                        saveApplications();
+                        renderExitApplicationsAdmin();
+                    });
+                    
+                    const rejectBtn = document.createElement('button');
+                    rejectBtn.className = 'btn btn-danger';
+                    rejectBtn.textContent = '拒绝';
+                    rejectBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入拒绝原因:');
+                        if (reason) {
+                            application.status = 'rejected';
+                            application.adminReason = reason;
+                            saveApplications();
+                            renderExitApplicationsAdmin();
+                        }
+                    });
+                    
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+                    div.appendChild(actions);
+                }
+                
+                applicationsList.appendChild(div);
+            });
+        }
+        
+        // 渲染出入境申请列表（管理员界面）
+        function renderPassportApplicationsAdmin() {
+            const applicationsList = document.getElementById('passport-applications-list');
+            applicationsList.innerHTML = '';
+            
+            if (passportApplications.length === 0) {
+                applicationsList.innerHTML = '<p>暂无出入境申请</p>';
+                return;
+            }
+            
+            passportApplications.forEach((application, index) => {
+                const div = document.createElement('div');
+                div.className = 'application-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = `申请人: ${application.name}`;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'application-meta';
+                meta.innerHTML = `
+                    <div>申请日期: ${application.date}</div>
+                    <div>邮箱: ${application.email}</div>
+                    <div>身份证: ${application.idNumber || '未提供'}</div>
+                    <div>证件类型: ${getPassportTypeText(application.type)}</div>
+                    <div>申请事由: ${getPassportPurposeText(application.purpose)}</div>
+                    <div>目的地: ${application.destination}</div>
+                    <div>预计出行时间: ${application.duration}</div>
+                `;
+                div.appendChild(meta);
+                
+                const status = document.createElement('div');
+                status.innerHTML = `状态: <span class="application-status status-${application.status}">${getStatusText(application.status)}</span>`;
+                div.appendChild(status);
+                
+                if (application.adminReason) {
+                    const adminReason = document.createElement('p');
+                    adminReason.textContent = `审批意见: ${application.adminReason}`;
+                    adminReason.style.fontSize = '14px';
+                    adminReason.style.color = '#666';
+                    adminReason.style.marginTop = '10px';
+                    div.appendChild(adminReason);
+                }
+                
+                if (application.status === 'pending') {
+                    const actions = document.createElement('div');
+                    actions.className = 'application-actions';
+                    
+                    const approveBtn = document.createElement('button');
+                    approveBtn.className = 'btn btn-success';
+                    approveBtn.textContent = '同意';
+                    approveBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入审批意见（可选）:');
+                        application.status = 'approved';
+                        application.adminReason = reason || '';
+                        saveApplications();
+                        renderPassportApplicationsAdmin();
+                    });
+                    
+                    const rejectBtn = document.createElement('button');
+                    rejectBtn.className = 'btn btn-danger';
+                    rejectBtn.textContent = '拒绝';
+                    rejectBtn.addEventListener('click', function() {
+                        const reason = prompt('请输入拒绝原因:');
+                        if (reason) {
+                            application.status = 'rejected';
+                            application.adminReason = reason;
+                            saveApplications();
+                            renderPassportApplicationsAdmin();
+                        }
+                    });
+                    
+                    actions.appendChild(approveBtn);
+                    actions.appendChild(rejectBtn);
+                    div.appendChild(actions);
+                }
+                
+                applicationsList.appendChild(div);
+            });
+        }
+        
+        // 渲染县级单位管理列表
+        function renderCountiesAdmin() {
+            const countyListAdmin = document.getElementById('county-list-admin');
+            countyListAdmin.innerHTML = '';
+            
+            if (countiesData.length === 0) {
+                countyListAdmin.innerHTML = '<p>暂无县级单位数据</p>';
+                return;
+            }
+            
+            countiesData.forEach((county, index) => {
+                const div = document.createElement('div');
+                div.className = 'county-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = county.name;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'county-meta';
+                meta.textContent = `ID: ${county.id}`;
+                div.appendChild(meta);
+                
+                const description = document.createElement('p');
+                description.textContent = county.description;
+                div.appendChild(description);
+                
+                if (county.image) {
+                    const img = document.createElement('img');
+                    img.src = county.image;
+                    img.alt = county.name;
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '150px';
+                    img.style.marginTop = '10px';
+                    img.style.borderRadius = '4px';
+                    div.appendChild(img);
+                }
+                
+                const actions = document.createElement('div');
+                actions.className = 'application-actions';
+                
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn';
+                editBtn.textContent = '编辑';
+                editBtn.addEventListener('click', function() {
+                    editCounty(county, index);
+                });
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.textContent = '删除';
+                deleteBtn.addEventListener('click', function() {
+                    if (confirm('确定要删除这个县级单位吗？')) {
+                        countiesData.splice(index, 1);
+                        saveCounties();
+                        renderCountiesAdmin();
+                        updateCultureSubNav();
+                        renderCulturePage();
+                    }
+                });
+                
+                actions.appendChild(editBtn);
+                actions.appendChild(deleteBtn);
+                div.appendChild(actions);
+                
+                countyListAdmin.appendChild(div);
+            });
+        }
+        
+        // 渲染管理员账号管理列表
+        function renderAdminsAdmin() {
+            const adminListAdmin = document.getElementById('admin-list-admin');
+            adminListAdmin.innerHTML = '';
+            
+            if (adminAccounts.length === 0) {
+                adminListAdmin.innerHTML = '<p>暂无管理员账号</p>';
+                return;
+            }
+            
+            adminAccounts.forEach((admin, index) => {
+                // 超级管理员不能删除自己
+                if (admin.isSuperAdmin && admin.username === currentAdmin.username) {
+                    return;
+                }
+                
+                const div = document.createElement('div');
+                div.className = 'admin-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = admin.username;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'admin-meta';
+                meta.textContent = `类型: ${admin.isSuperAdmin ? '超级管理员' : '普通管理员'} | 邮箱: ${admin.email}`;
+                div.appendChild(meta);
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.textContent = '删除';
+                deleteBtn.addEventListener('click', function() {
+                    if (confirm('确定要删除这个管理员账号吗？')) {
+                        adminAccounts.splice(index, 1);
+                        saveAdminAccounts();
+                        renderAdminsAdmin();
+                    }
+                });
+                div.appendChild(deleteBtn);
+                
+                adminListAdmin.appendChild(div);
+            });
+        }
+        
+        // 渲染待审核管理员账号列表
+        function renderPendingAdmins() {
+            const pendingAdminList = document.getElementById('pending-admin-list');
+            pendingAdminList.innerHTML = '';
+            
+            if (pendingAdminAccounts.length === 0) {
+                pendingAdminList.innerHTML = '<p>暂无待审核的管理员账号</p>';
+                return;
+            }
+            
+            pendingAdminAccounts.forEach((admin, index) => {
+                const div = document.createElement('div');
+                div.className = 'admin-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = admin.username;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'admin-meta';
+                meta.textContent = `邮箱: ${admin.email} | 注册日期: ${admin.registerDate}`;
+                div.appendChild(meta);
+                
+                const actions = document.createElement('div');
+                actions.className = 'application-actions';
+                
+                const approveBtn = document.createElement('button');
+                approveBtn.className = 'btn btn-success';
+                approveBtn.textContent = '通过';
+                approveBtn.addEventListener('click', function() {
+                    // 将待审核账号转移到正式管理员列表
+                    const newAdmin = {
+                        username: admin.username,
+                        password: admin.password,
+                        email: admin.email,
+                        isSuperAdmin: false,
+                        status: 'active'
+                    };
+                    
+                    adminAccounts.push(newAdmin);
+                    saveAdminAccounts();
+                    
+                    // 从待审核列表中移除
+                    pendingAdminAccounts.splice(index, 1);
+                    savePendingAdminAccounts();
+                    
+                    renderPendingAdmins();
+                    renderAdminsAdmin();
+                    
+                    alert('已通过该管理员账号申请！');
+                });
+                
+                const rejectBtn = document.createElement('button');
+                rejectBtn.className = 'btn btn-danger';
+                rejectBtn.textContent = '拒绝';
+                rejectBtn.addEventListener('click', function() {
+                    if (confirm('确定要拒绝该管理员账号申请吗？')) {
+                        // 从待审核列表中移除
+                        pendingAdminAccounts.splice(index, 1);
+                        savePendingAdminAccounts();
+                        
+                        renderPendingAdmins();
+                        
+                        alert('已拒绝该管理员账号申请！');
+                    }
+                });
+                
+                actions.appendChild(approveBtn);
+                actions.appendChild(rejectBtn);
+                div.appendChild(actions);
+                
+                pendingAdminList.appendChild(div);
+            });
+        }
+        
+        // 显示新闻详情
+        function showNewsDetail(newsItem) {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.remove('hidden');
+            
+            document.getElementById('detail-title').textContent = newsItem.title;
+            document.getElementById('detail-date').textContent = newsItem.date;
+            document.getElementById('detail-author').textContent = `发布者：${newsItem.author}`;
+            
+            const contentElement = document.getElementById('detail-content');
+            contentElement.innerHTML = '';
+            
+            if (newsItem.image) {
+                const img = document.createElement('img');
+                img.src = newsItem.image;
+                img.alt = newsItem.title;
+                img.className = 'news-detail-image';
+                contentElement.appendChild(img);
+            }
+            
+            // 处理换行符
+            const paragraphs = newsItem.content.split('\n\n');
+            paragraphs.forEach(paragraph => {
+                const p = document.createElement('p');
+                p.textContent = paragraph;
+                contentElement.appendChild(p);
+            });
+        }
+        
+        // 显示县级单位详情
+        function showCountyDetail(county) {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.remove('hidden');
+            
+            document.getElementById('county-detail-title').textContent = county.name;
+            
+            const imageElement = document.getElementById('county-detail-image');
+            const descriptionElement = document.getElementById('county-detail-description');
+            
+            if (county.image) {
+                imageElement.src = county.image;
+                imageElement.alt = county.name;
+                imageElement.classList.remove('hidden');
+            } else {
+                imageElement.classList.add('hidden');
+            }
+            
+            descriptionElement.innerHTML = '';
+            const paragraphs = county.description.split('\n');
+            paragraphs.forEach(paragraph => {
+                const p = document.createElement('p');
+                p.textContent = paragraph;
+                p.style.marginBottom = '15px';
+                descriptionElement.appendChild(p);
+            });
+        }
+        
+        // 编辑县级单位
+        function editCounty(county, index) {
+            const newName = prompt('请输入新的县级单位名称:', county.name);
+            if (newName === null) return;
+            
+            const newDescription = prompt('请输入新的描述:', county.description);
+            if (newDescription === null) return;
+            
+            // 询问是否更新图片
+            const updateImage = confirm('是否更新图片？');
+            if (updateImage) {
+                // 在实际应用中，这里应该实现图片上传功能
+                // 这里我们只是模拟更新
+                alert('图片更新功能需要在实际应用中实现');
+            }
+            
+            countiesData[index].name = newName;
+            countiesData[index].description = newDescription;
+            
+            saveCounties();
+            renderCountiesAdmin();
+            updateCultureSubNav();
+            renderCulturePage();
+            
+            alert('县级单位信息已更新！');
+        }
+        
+        // 显示政府文件页面
+        function showGovFilesPage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.remove('hidden');
+        }
+        
+        // 显示申请入籍页面
+        function showNaturalizationPage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.remove('hidden');
+        }
+        
+        // 显示申请退籍页面
+        function showExitPage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.remove('hidden');
+        }
+        
+        // 显示出入境服务页面
+        function showEntryExitPage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.remove('hidden');
+        }
+        
+        // 显示人文林山页面
+        function showCulturePage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.remove('hidden');
+        }
+        
+        // 渲染管理界面中的新闻列表
+        function renderNewsAdmin() {
+            const newsListAdmin = document.getElementById('news-list-admin');
+            newsListAdmin.innerHTML = '';
+            
+            newsData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                
+                const title = document.createElement('h4');
+                title.textContent = item.title;
+                div.appendChild(title);
+                
+                const meta = document.createElement('div');
+                meta.className = 'suggestion-meta';
+                meta.textContent = `${item.date} | ${item.category === 'news' ? '新闻动态' : '要闻动态'} | 发布者：${item.author}`;
+                div.appendChild(meta);
+                
+                const content = document.createElement('p');
+                content.textContent = item.content.length > 150 ? item.content.substring(0, 150) + '...' : item.content;
+                div.appendChild(content);
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.textContent = '删除';
+                deleteBtn.style.marginTop = '10px';
+                deleteBtn.addEventListener('click', function() {
+                    if (confirm('确定要删除这条新闻吗？')) {
+                        newsData = newsData.filter(news => news.id !== item.id);
+                        saveNewsData();
+                        renderNewsAdmin();
+                        renderNews();
+                        renderImportantNews();
+                    }
+                });
+                div.appendChild(deleteBtn);
+                
+                newsListAdmin.appendChild(div);
+            });
+        }
+        
+        // 渲染网上信访列表
+        function renderSuggestions() {
+            const suggestionsList = document.getElementById('suggestions-list');
+            suggestionsList.innerHTML = '';
+            
+            suggestionsData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                
+                const name = document.createElement('h4');
+                name.textContent = item.name;
+                div.appendChild(name);
+                
+                const meta = document.createElement('div');
+                meta.className = 'suggestion-meta';
+                meta.textContent = `${item.date} | 联系方式: ${item.contact}`;
+                div.appendChild(meta);
+                
+                const content = document.createElement('p');
+                content.textContent = item.content;
+                div.appendChild(content);
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.textContent = '删除';
+                deleteBtn.style.marginTop = '10px';
+                deleteBtn.addEventListener('click', function() {
+                    if (confirm('确定要删除这条信访吗？')) {
+                        suggestionsData = suggestionsData.filter(suggestion => suggestion.id !== item.id);
+                        saveSuggestions();
+                        renderSuggestions();
+                    }
+                });
+                div.appendChild(deleteBtn);
+                
+                suggestionsList.appendChild(div);
+            });
+        }
+        
+        // 渲染管理界面中的文件列表
+        function renderFilesAdmin() {
+            const fileListAdmin = document.getElementById('file-list-admin');
+            fileListAdmin.innerHTML = '';
+            
+            filesData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'file-item';
+                
+                const title = document.createElement('h4');
+                title.textContent = item.title;
+                div.appendChild(title);
+                
+                const meta = document.createElement('div');
+                meta.className = 'file-meta';
+                meta.textContent = `${item.date} | ${getCategoryName(item.category)} | ${item.size}`;
+                div.appendChild(meta);
+                
+                const desc = document.createElement('p');
+                desc.textContent = item.description;
+                div.appendChild(desc);
+                
+                const filename = document.createElement('p');
+                filename.textContent = `文件名: ${item.filename}`;
+                filename.style.fontSize = '14px';
+                filename.style.color = '#666';
+                div.appendChild(filename);
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-secondary';
+                deleteBtn.textContent = '删除';
+                deleteBtn.style.marginTop = '10px';
+                deleteBtn.addEventListener('click', function() {
+                    if (confirm('确定要删除这个文件吗？')) {
+                        filesData = filesData.filter(file => file.id !== item.id);
+                        renderFilesAdmin();
+                        renderFiles();
+                    }
+                });
+                div.appendChild(deleteBtn);
+                
+                fileListAdmin.appendChild(div);
+            });
+        }
+        
+        // 渲染管理界面中的国籍/户籍列表
+        function renderNationalitiesAdmin() {
+            const nationalityListAdmin = document.getElementById('nationality-list-admin');
+            nationalityListAdmin.innerHTML = '';
+            
+            // 渲染国籍选项
+            const nationalitySection = document.createElement('div');
+            nationalitySection.innerHTML = '<h4>国籍选项</h4>';
+            
+            if (nationalitiesData.length === 0) {
+                nationalitySection.innerHTML += '<p>暂无国籍选项</p>';
+            } else {
+                nationalitiesData.forEach((nationality, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.style.padding = '10px';
+                    
+                    const name = document.createElement('span');
+                    name.textContent = nationality;
+                    div.appendChild(name);
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-secondary';
+                    deleteBtn.textContent = '删除';
+                    deleteBtn.style.marginLeft = '10px';
+                    deleteBtn.addEventListener('click', function() {
+                        if (confirm('确定要删除这个国籍选项吗？')) {
+                            nationalitiesData.splice(index, 1);
+                            renderNationalitiesAdmin();
+                            renderNationalityOptions();
+                        }
+                    });
+                    div.appendChild(deleteBtn);
+                    
+                    nationalitySection.appendChild(div);
+                });
+            }
+            
+            nationalityListAdmin.appendChild(nationalitySection);
+            
+            // 渲染户籍选项
+            const householdSection = document.createElement('div');
+            householdSection.innerHTML = '<h4 style="margin-top: 20px;">户籍选项</h4>';
+            
+            if (householdsData.length === 0) {
+                householdSection.innerHTML += '<p>暂无户籍选项</p>';
+            } else {
+                householdsData.forEach((household, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.style.padding = '10px';
+                    
+                    const name = document.createElement('span');
+                    name.textContent = household;
+                    div.appendChild(name);
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-secondary';
+                    deleteBtn.textContent = '删除';
+                    deleteBtn.style.marginLeft = '10px';
+                    deleteBtn.addEventListener('click', function() {
+                        if (confirm('确定要删除这个户籍选项吗？')) {
+                            householdsData.splice(index, 1);
+                            renderNationalitiesAdmin();
+                            renderHouseholdOptions();
+                        }
+                    });
+                    div.appendChild(deleteBtn);
+                    
+                    householdSection.appendChild(div);
+                });
+            }
+            
+            nationalityListAdmin.appendChild(householdSection);
+        }
+        
+        // 加载功能设置
+        function loadFeatures() {
+            const savedFeatures = localStorage.getItem('linshan-gov-features');
+            if (savedFeatures) {
+                features = JSON.parse(savedFeatures);
+            }
+            applyFeatures();
+            
+            // 设置功能管理界面中的开关状态
+            for (const feature in features) {
+                const checkbox = document.getElementById(`feature-${feature}`);
+                if (checkbox) {
+                    checkbox.checked = features[feature];
+                }
+            }
+        }
+        
+        // 保存功能设置
+        function saveFeatures() {
+            for (const feature in features) {
+                const checkbox = document.getElementById(`feature-${feature}`);
+                if (checkbox) {
+                    features[feature] = checkbox.checked;
+                }
+            }
+            
+            localStorage.setItem('linshan-gov-features', JSON.stringify(features));
+        }
+        
+        // 应用功能设置
+        function applyFeatures() {
+            // 应用导航栏功能
+            document.querySelectorAll('.nav-item[data-feature]').forEach(item => {
+                const feature = item.getAttribute('data-feature');
+                if (features[feature]) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // 应用内容区域功能
+            document.querySelectorAll('[data-feature]').forEach(item => {
+                const feature = item.getAttribute('data-feature');
+                if (features[feature]) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // 辅助函数
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + " B";
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
+            else return (bytes / 1048576).toFixed(1) + " MB";
+        }
+        
+        function getCategoryName(category) {
+            const categories = {
+                'policy': '政策法规',
+                'notice': '通知公告',
+                'report': '工作报告',
+                'other': '其他文件'
+            };
+            return categories[category] || '未知分类';
+        }
+        
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': '待处理',
+                'approved': '已同意',
+                'rejected': '已拒绝'
+            };
+            return statusMap[status] || '未知状态';
+        }
+        
+        function getPassportTypeText(type) {
+            const typeMap = {
+                'passport': '普通护照',
+                'travel-permit': '往来港澳通行证',
+                'taiwan-permit': '大陆居民往来台湾通行证'
+            };
+            return typeMap[type] || '未知类型';
+        }
+        
+        function getPassportPurposeText(purpose) {
+            const purposeMap = {
+                'tourism': '旅游',
+                'business': '商务',
+                'study': '留学',
+                'visit': '探亲',
+                'other': '其他'
+            };
+            return purposeMap[purpose] || '未知事由';
+        }
+        
+        // 页面切换函数
+        function showHomePage() {
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('news-detail-page').classList.add('hidden');
+            document.getElementById('gov-files-page').classList.add('hidden');
+            document.getElementById('naturalization-page').classList.add('hidden');
+            document.getElementById('exit-page').classList.add('hidden');
+            document.getElementById('entry-exit-page').classList.add('hidden');
+            document.getElementById('culture-page').classList.add('hidden');
+            document.getElementById('county-detail-page').classList.add('hidden');
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('admin-register').classList.add('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+            
+            // 重置导航栏激活状态
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.getElementById('home-nav').classList.add('active');
+            
+            document.querySelectorAll('.mobile-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.getElementById('mobile-home-nav').classList.add('active');
+        }
+        
+        function showAdminLogin() {
+            document.getElementById('admin-login').classList.remove('hidden');
+            document.getElementById('admin-register').classList.add('hidden');
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+        }
+        
+        function hideAdminLogin() {
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('home-page').classList.remove('hidden');
+        }
+        
+        function showAdminRegister() {
+            document.getElementById('admin-register').classList.remove('hidden');
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+        }
+        
+        function hideAdminRegister() {
+            document.getElementById('admin-register').classList.add('hidden');
+            document.getElementById('home-page').classList.remove('hidden');
+        }
+        
+        function showAdminPanel() {
+            if (!isAdminLoggedIn) {
+                alert('请先登录管理员账号！');
+                showAdminLogin();
+                return;
+            }
+            
+            document.getElementById('admin-panel').classList.remove('hidden');
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('admin-login').classList.add('hidden');
+            document.getElementById('admin-register').classList.add('hidden');
+            
+            // 默认显示新闻管理
+            showNewsManagement();
+        }
+        
+        function showNewsManagement() {
+            hideAllAdminSections();
+            document.getElementById('news-management').classList.remove('hidden');
+            renderNewsAdmin();
+        }
+        
+        function showSuggestionManagement() {
+            hideAllAdminSections();
+            document.getElementById('suggestion-management').classList.remove('hidden');
+            renderSuggestions();
+        }
+        
+        function showFileManagement() {
+            hideAllAdminSections();
+            document.getElementById('file-management').classList.remove('hidden');
+            renderFilesAdmin();
+        }
+        
+        function showFeatureManagement() {
+            hideAllAdminSections();
+            document.getElementById('feature-management').classList.remove('hidden');
+        }
+        
+        function showNationalityManagement() {
+            hideAllAdminSections();
+            document.getElementById('nationality-management').classList.remove('hidden');
+            renderNationalitiesAdmin();
+        }
+        
+        function showApplicationManagement() {
+            hideAllAdminSections();
+            document.getElementById('application-management').classList.remove('hidden');
+            renderChineseNaturalizationApplicationsAdmin();
+            renderForeignerNaturalizationApplicationsAdmin();
+            renderExitApplicationsAdmin();
+            renderPassportApplicationsAdmin();
+        }
+        
+        function showHeaderConfig() {
+            hideAllAdminSections();
+            document.getElementById('header-config').classList.remove('hidden');
+        }
+        
+        function showAlertManagement() {
+            hideAllAdminSections();
+            document.getElementById('alert-management').classList.remove('hidden');
+            
+            // 设置表单中的当前值
+            document.getElementById('alert-content').value = alertContent;
+            document.getElementById('feature-alert').checked = features['alert'];
+        }
+        
+        function showCountyManagement() {
+            hideAllAdminSections();
+            document.getElementById('county-management').classList.remove('hidden');
+            renderCountiesAdmin();
+        }
+        
+        function showAdminManagement() {
+            hideAllAdminSections();
+            document.getElementById('admin-management').classList.remove('hidden');
+            renderAdminsAdmin();
+        }
+        
+        function showAdminReview() {
+            hideAllAdminSections();
+            document.getElementById('admin-review').classList.remove('hidden');
+            renderPendingAdmins();
+        }
+        
+        function hideAllAdminSections() {
+            document.getElementById('news-management').classList.add('hidden');
+            document.getElementById('suggestion-management').classList.add('hidden');
+            document.getElementById('file-management').classList.add('hidden');
+            document.getElementById('feature-management').classList.add('hidden');
+            document.getElementById('nationality-management').classList.add('hidden');
+            document.getElementById('application-management').classList.add('hidden');
+            document.getElementById('header-config').classList.add('hidden');
+            document.getElementById('alert-management').classList.add('hidden');
+            document.getElementById('county-management').classList.add('hidden');
+            document.getElementById('admin-management').classList.add('hidden');
+            document.getElementById('admin-review').classList.add('hidden');
+        }
+        
+        function loginSuccess(admin) {
+            isAdminLoggedIn = true;
+            currentAdmin = admin;
+            
+            // 显示管理员菜单
+            document.getElementById('admin-nav').classList.remove('hidden');
+            document.getElementById('mobile-admin-nav').classList.remove('hidden');
+            
+            // 如果是超级管理员，显示超级管理员专用菜单
+            if (admin.isSuperAdmin) {
+                document.getElementById('admin-management-link').classList.remove('hidden');
+                document.getElementById('admin-review-link').classList.remove('hidden');
+                document.getElementById('mobile-admin-management-link').classList.remove('hidden');
+                document.getElementById('mobile-admin-review-link').classList.remove('hidden');
+                document.getElementById('manage-admin-btn').classList.remove('hidden');
+                document.getElementById('manage-admin-review-btn').classList.remove('hidden');
+            }
+            
+            // 更新用户区域显示
+            document.getElementById('admin-login-link').classList.add('hidden');
+            document.getElementById('admin-register-link').classList.add('hidden');
+            document.getElementById('admin-panel-link').classList.remove('hidden');
+            document.getElementById('logout-link').classList.remove('hidden');
+            
+            // 隐藏登录表单
+            hideAdminLogin();
+            
+            // 显示管理面板
+            showAdminPanel();
+            
+            alert(`欢迎回来，${admin.username}！`);
+        }
+        
+        function logout() {
+            isAdminLoggedIn = false;
+            currentAdmin = null;
+            
+            // 隐藏管理员菜单
+            document.getElementById('admin-nav').classList.add('hidden');
+            document.getElementById('mobile-admin-nav').classList.add('hidden');
+            
+            // 隐藏超级管理员专用菜单
+            document.getElementById('admin-management-link').classList.add('hidden');
+            document.getElementById('admin-review-link').classList.add('hidden');
+            document.getElementById('mobile-admin-management-link').classList.add('hidden');
+            document.getElementById('mobile-admin-review-link').classList.add('hidden');
+            document.getElementById('manage-admin-btn').classList.add('hidden');
+            document.getElementById('manage-admin-review-btn').classList.add('hidden');
+            
+            // 更新用户区域显示
+            document.getElementById('admin-login-link').classList.remove('hidden');
+            document.getElementById('admin-register-link').classList.remove('hidden');
+            document.getElementById('admin-panel-link').classList.add('hidden');
+            document.getElementById('logout-link').classList.add('hidden');
+            
+            // 显示首页
+            showHomePage();
+            
+            alert('您已成功退出登录！');
+        }
+        
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobile-nav');
+            if (mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.remove('hidden');
+            } else {
+                mobileNav.classList.add('hidden');
+            }
+        }
+        
+        function hideMobileNav() {
+            document.getElementById('mobile-nav').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
